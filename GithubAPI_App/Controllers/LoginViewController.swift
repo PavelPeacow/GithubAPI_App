@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class LoginViewController: UIViewController {
     
@@ -59,8 +60,38 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController {
     @objc private func didTapLoginButton() {
-        let view = WebViewRequestLoginViewController()
-        present(view, animated: true)
+        loadGitHubAuthPromt()
+    }
+    
+    func loadGitHubAuthPromt() {
+        guard let url = URL(string: "https://github.com/login/oauth/authorize?client_id=7968bef2c624696f25e8&scope=read:user&state=TEST_STATE") else { return }
+        let callBackScheme = "pavel.github.test.app"
+        let session = ASWebAuthenticationSession(url: url, callbackURLScheme: callBackScheme) { callBackURL, error in
+            guard let callBackURL = callBackURL, error == nil else { print("error"); return}
+            
+            guard let query = URLComponents(string: callBackURL.absoluteString)?.queryItems else { return }
+            guard let code = query.first(where: { $0.name == "code" } )?.value else { return }
+            
+            print(code)
+            
+            Task { [weak self] in
+                do {
+                    try await APIManager.shared.getUserToken(with: code)
+                    self?.navigationController?.setViewControllers([ViewController()], animated: true)
+                } catch {
+                    print(error)
+                }
+              
+            }
+        }
+        session.presentationContextProvider = self
+        session.start()
+    }
+}
+
+extension LoginViewController: ASWebAuthenticationPresentationContextProviding {
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return view.window!
     }
 }
 

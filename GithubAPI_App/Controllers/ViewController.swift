@@ -42,7 +42,7 @@ class ViewController: UIViewController {
 extension ViewController {
     private func getRepos() async {
         do {
-            let repos = try await APIManager.shared.getRepo()
+            let repos = try await APIManager.shared.getRepo(with: APIManager.shared.accessToken ?? "")
             DispatchQueue.main.async { [weak self] in
                 self?.repos = repos
                 self?.tableView.reloadData()
