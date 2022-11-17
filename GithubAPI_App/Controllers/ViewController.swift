@@ -20,9 +20,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.addSubview(tableView)
-       
         view.backgroundColor = .red
         setDelegates()
         Task {

@@ -14,6 +14,8 @@
 		B520B5462923D2EF0075E3AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B520B5442923D2EF0075E3AF /* LaunchScreen.storyboard */; };
 		B520B551292639150075E3AF /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B550292639150075E3AF /* APIManager.swift */; };
 		B520B55329263A820075E3AF /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B55229263A820075E3AF /* Repo.swift */; };
+		B520B55529264E3D0075E3AF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B55429264E3D0075E3AF /* LoginViewController.swift */; };
+		B58822A72926556B008B67B3 /* WebViewRequestLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58822A62926556B008B67B3 /* WebViewRequestLoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		B520B5472923D2EF0075E3AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B520B550292639150075E3AF /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		B520B55229263A820075E3AF /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
+		B520B55429264E3D0075E3AF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B58822A62926556B008B67B3 /* WebViewRequestLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewRequestLoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +63,9 @@
 			isa = PBXGroup;
 			children = (
 				B520B54E2923D3B10075E3AF /* App */,
+				B58822A929265806008B67B3 /* API */,
 				B520B54D2923D3AD0075E3AF /* Controllers */,
+				B58822A8292657FD008B67B3 /* Model */,
 				B520B54F2923D3C10075E3AF /* Resourses */,
 				B520B5472923D2EF0075E3AF /* Info.plist */,
 			);
@@ -69,9 +75,9 @@
 		B520B54D2923D3AD0075E3AF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B520B55429264E3D0075E3AF /* LoginViewController.swift */,
 				B520B53D2923D2EE0075E3AF /* ViewController.swift */,
-				B520B550292639150075E3AF /* APIManager.swift */,
-				B520B55229263A820075E3AF /* Repo.swift */,
+				B58822A62926556B008B67B3 /* WebViewRequestLoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -92,6 +98,22 @@
 				B520B5422923D2EF0075E3AF /* Assets.xcassets */,
 			);
 			path = Resourses;
+			sourceTree = "<group>";
+		};
+		B58822A8292657FD008B67B3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B520B55229263A820075E3AF /* Repo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B58822A929265806008B67B3 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				B520B550292639150075E3AF /* APIManager.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,8 +186,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B520B55529264E3D0075E3AF /* LoginViewController.swift in Sources */,
 				B520B551292639150075E3AF /* APIManager.swift in Sources */,
 				B520B53E2923D2EE0075E3AF /* ViewController.swift in Sources */,
+				B58822A72926556B008B67B3 /* WebViewRequestLoginViewController.swift in Sources */,
 				B520B55329263A820075E3AF /* Repo.swift in Sources */,
 				B520B53A2923D2EE0075E3AF /* AppDelegate.swift in Sources */,
 				B520B53C2923D2EE0075E3AF /* SceneDelegate.swift in Sources */,

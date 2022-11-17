@@ -6,7 +6,6 @@
 //
 
 import Foundation
-//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
 
 enum APIError: Error {
     case badURL
@@ -18,7 +17,7 @@ final class APIManager {
     
     static let shared = APIManager()
     
-    private let token = "***"
+    private let token = "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"
     
     func getRepo() async throws -> [Repo] {
         guard let url = URL(string: "https://api.github.com/user/repos") else { throw APIError.badURL }
