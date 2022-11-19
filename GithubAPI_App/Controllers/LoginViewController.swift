@@ -49,6 +49,10 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let _ = APIManager.shared.accessToken {
+            navigationController?.setViewControllers([RepoListViewController()], animated: true)
+        }
+        
         view.addSubview(stackView)
         
         view.backgroundColor = .systemBackground
@@ -77,7 +81,7 @@ extension LoginViewController {
             Task { [weak self] in
                 do {
                     try await APIManager.shared.getUserToken(with: code)
-                    self?.navigationController?.setViewControllers([ViewController()], animated: true)
+                    self?.navigationController?.setViewControllers([RepoListViewController()], animated: true)
                 } catch {
                     print(error)
                 }

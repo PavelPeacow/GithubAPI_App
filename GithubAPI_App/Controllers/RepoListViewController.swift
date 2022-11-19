@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class RepoListViewController: UIViewController {
     
     private var repos = [Repo]()
     
@@ -20,6 +20,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Repositories"
+        
         view.addSubview(tableView)
         view.backgroundColor = .red
         setDelegates()
@@ -39,7 +42,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController {
+extension RepoListViewController {
     private func getRepos() async {
         do {
             let repos = try await APIManager.shared.getRepo(with: APIManager.shared.accessToken ?? "")
@@ -55,7 +58,7 @@ extension ViewController {
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension RepoListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         repos.count
     }
@@ -63,13 +66,14 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = repos[indexPath.row].name ?? "loh"
+        cell.imageView?.image = UIImage(systemName: "folder.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
         return cell
     }
     
     
 }
 
-extension ViewController: UITableViewDelegate {
+extension RepoListViewController: UITableViewDelegate {
     
 }
 
