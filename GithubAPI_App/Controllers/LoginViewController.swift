@@ -8,7 +8,7 @@
 import UIKit
 import AuthenticationServices
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
     private lazy var stackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [githubIcon, appTitle, loginButton])

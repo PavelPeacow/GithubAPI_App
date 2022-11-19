@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [seacrhLabel, searchTextfield, searchButton])
@@ -34,6 +34,9 @@ class SearchViewController: UIViewController {
         field.backgroundColor = .white
         field.layer.cornerRadius = 5
         field.textColor = .black
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
+        field.leftView?.backgroundColor = .red
+        field.leftViewMode = .always
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
@@ -43,12 +46,15 @@ class SearchViewController: UIViewController {
         button.setTitle("Search", for: .normal)
         button.backgroundColor = .systemGreen
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "RepoViewer"
         
         view.addSubview(stackView)
 
@@ -57,6 +63,27 @@ class SearchViewController: UIViewController {
     }
 
 
+}
+
+extension SearchViewController {
+    @objc func didTapSearchButton() {
+        Task {
+            await getUser()
+        }
+    }
+    
+    private func getUser() async {
+        do {
+            let result = try await APIManager.shared.getUser(username: searchTextfield.text ?? "")
+            
+            let vc = UserProfileViewController()
+            vc.configure(with: result)
+            navigationController?.pushViewController(vc, animated: true)
+        } catch {
+            print(error)
+        }
+       
+    }
 }
 
 extension SearchViewController {

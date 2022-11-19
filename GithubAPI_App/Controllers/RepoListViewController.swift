@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RepoListViewController: UIViewController {
+final class RepoListViewController: UIViewController {
     
     private var repos = [Repo]()
     

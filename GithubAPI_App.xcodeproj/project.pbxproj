@@ -18,6 +18,9 @@
 		B58822B029268767008B67B3 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58822AF29268767008B67B3 /* Token.swift */; };
 		B5FC044F2928ED240048A949 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC044E2928ED240048A949 /* MainTabBarViewController.swift */; };
 		B5FC04512928FA860048A949 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC04502928FA860048A949 /* SearchViewController.swift */; };
+		B5FC04532929044B0048A949 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC04522929044B0048A949 /* UserProfileViewController.swift */; };
+		B5FC0455292907110048A949 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC0454292907110048A949 /* User.swift */; };
+		B5FC045729290BFE0048A949 /* UIImage+URLDowload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC045629290BFE0048A949 /* UIImage+URLDowload.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		B58822AF29268767008B67B3 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		B5FC044E2928ED240048A949 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		B5FC04502928FA860048A949 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		B5FC04522929044B0048A949 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		B5FC0454292907110048A949 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B5FC045629290BFE0048A949 /* UIImage+URLDowload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+URLDowload.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +74,7 @@
 			children = (
 				B520B54E2923D3B10075E3AF /* App */,
 				B58822A929265806008B67B3 /* API */,
+				B5FC045829291E020048A949 /* Extension */,
 				B520B54D2923D3AD0075E3AF /* Controllers */,
 				B58822A8292657FD008B67B3 /* Model */,
 				B520B54F2923D3C10075E3AF /* Resourses */,
@@ -83,6 +90,7 @@
 				B520B55429264E3D0075E3AF /* LoginViewController.swift */,
 				B520B53D2923D2EE0075E3AF /* RepoListViewController.swift */,
 				B5FC044E2928ED240048A949 /* MainTabBarViewController.swift */,
+				B5FC04522929044B0048A949 /* UserProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -110,6 +118,7 @@
 			children = (
 				B520B55229263A820075E3AF /* Repo.swift */,
 				B58822AF29268767008B67B3 /* Token.swift */,
+				B5FC0454292907110048A949 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -120,6 +129,14 @@
 				B520B550292639150075E3AF /* APIManager.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		B5FC045829291E020048A949 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC045629290BFE0048A949 /* UIImage+URLDowload.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,14 +214,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B520B55529264E3D0075E3AF /* LoginViewController.swift in Sources */,
+				B5FC04532929044B0048A949 /* UserProfileViewController.swift in Sources */,
 				B5FC044F2928ED240048A949 /* MainTabBarViewController.swift in Sources */,
 				B58822B029268767008B67B3 /* Token.swift in Sources */,
+				B5FC045729290BFE0048A949 /* UIImage+URLDowload.swift in Sources */,
 				B5FC04512928FA860048A949 /* SearchViewController.swift in Sources */,
 				B520B551292639150075E3AF /* APIManager.swift in Sources */,
 				B520B53E2923D2EE0075E3AF /* RepoListViewController.swift in Sources */,
 				B520B55329263A820075E3AF /* Repo.swift in Sources */,
 				B520B53A2923D2EE0075E3AF /* AppDelegate.swift in Sources */,
 				B520B53C2923D2EE0075E3AF /* SceneDelegate.swift in Sources */,
+				B5FC0455292907110048A949 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

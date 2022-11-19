@@ -31,6 +31,8 @@ final class APIManager {
     
     static let shared = APIManager()
     
+    
+    
     func getUserToken(with code: String) async throws {
         guard let url = URL(string: "https://github.com/login/oauth/access_token?client_id=\(clientID)&client_secret=\(clientSecret)&code=\(code)") else { throw APIError.badURL }
         
@@ -46,6 +48,21 @@ final class APIManager {
         
         accessToken = result.access_token
         
+    }
+    
+    func getUser(username: String) async throws -> User {
+        guard let url = URL(string: "https://api.github.com/users/\(username)") else { throw APIError.badURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        guard let (data, _) = try? await URLSession.shared.data(for: request) else { throw APIError.canNotGetData }
+        
+        guard let result = try? JSONDecoder().decode(User.self, from: data) else { throw APIError.canNotDecode}
+        print(result)
+        
+        return result
     }
         
     func getRepo(with token: String) async throws -> [Repo] {
