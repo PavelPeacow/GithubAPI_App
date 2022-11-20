@@ -91,6 +91,7 @@
 				B520B53D2923D2EE0075E3AF /* RepoListViewController.swift */,
 				B5FC044E2928ED240048A949 /* MainTabBarViewController.swift */,
 				B5FC04522929044B0048A949 /* UserProfileViewController.swift */,
+				B5FC045B292A65C70048A949 /* View */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -137,6 +138,13 @@
 				B5FC045629290BFE0048A949 /* UIImage+URLDowload.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B5FC045B292A65C70048A949 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

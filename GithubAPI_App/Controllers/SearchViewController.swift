@@ -77,7 +77,7 @@ extension SearchViewController {
             let result = try await APIManager.shared.getUser(username: searchTextfield.text ?? "")
             
             let vc = UserProfileViewController()
-            vc.configure(with: result)
+            vc.configure(with: result, isAuthUser: false)
             navigationController?.pushViewController(vc, animated: true)
         } catch {
             print(error)

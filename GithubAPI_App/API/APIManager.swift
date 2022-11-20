@@ -64,14 +64,44 @@ final class APIManager {
         
         return result
     }
-        
-    func getRepo(with token: String) async throws -> [Repo] {
-        guard let url = URL(string: "https://api.github.com/user/repos") else { throw APIError.badURL }
+    
+    func getAuthUser() async throws -> User {
+        guard let url = URL(string: "https://api.github.com/user") else { throw APIError.badURL }
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken ?? "")", forHTTPHeaderField: "Authorization")
+        
+        guard let (data, _) = try? await URLSession.shared.data(for: request) else { throw APIError.canNotGetData }
+        
+        guard let result = try? JSONDecoder().decode(User.self, from: data) else { throw APIError.canNotDecode}
+        print(result)
+        
+        return result
+    }
+        
+    func getProfileRepo() async throws -> [Repo] {
+        guard let url = URL(string: "https://api.github.com/user/repos?sort=updated&per_page=100&") else { throw APIError.badURL }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(accessToken ?? "")", forHTTPHeaderField: "Authorization")
+        
+        guard let (data, _) = try? await URLSession.shared.data(for: request) else { throw APIError.canNotGetData }
+        
+        guard let result = try? JSONDecoder().decode([Repo].self, from: data) else { throw APIError.canNotDecode}
+        print(result)
+        
+        return result
+    }
+    
+    func getUserRepo(with username: String) async throws -> [Repo] {
+        guard let url = URL(string: "https://api.github.com/users/\(username)/repos?sort=updated&per_page=100") else { throw APIError.badURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         guard let (data, _) = try? await URLSession.shared.data(for: request) else { throw APIError.canNotGetData }
         

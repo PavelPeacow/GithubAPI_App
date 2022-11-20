@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum GetRepos {
+    case user
+    case profle
+}
+
 final class RepoListViewController: UIViewController {
     
     private var repos = [Repo]()
@@ -26,9 +31,6 @@ final class RepoListViewController: UIViewController {
         view.addSubview(tableView)
         view.backgroundColor = .red
         setDelegates()
-        Task {
-            await getRepos()
-        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -40,12 +42,24 @@ final class RepoListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    func configureRepos(with type: GetRepos, _ username: String?) {
+        Task {
+            switch type {
+            case .user:
+                await getUserRepos(usernmame: username ?? "")
+            case .profle:
+                await getProfileRepos()
+            }
+        }
+    }
+    
 }
 
 extension RepoListViewController {
-    private func getRepos() async {
+    private func getProfileRepos() async {
         do {
-            let repos = try await APIManager.shared.getRepo(with: APIManager.shared.accessToken ?? "")
+            let repos = try await APIManager.shared.getProfileRepo()
             DispatchQueue.main.async { [weak self] in
                 self?.repos = repos
                 self?.tableView.reloadData()
@@ -54,7 +68,19 @@ extension RepoListViewController {
         } catch {
             print(error)
         }
-        
+    }
+    
+    private func getUserRepos(usernmame: String) async {
+        do {
+            let repos = try await APIManager.shared.getUserRepo(with: usernmame)
+            DispatchQueue.main.async { [weak self] in
+                self?.repos = repos
+                self?.tableView.reloadData()
+            }
+            print(repos)
+        } catch {
+            print(error)
+        }
     }
 }
 
@@ -65,7 +91,7 @@ extension RepoListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = repos[indexPath.row].name ?? "loh"
+        cell.textLabel?.text = repos[indexPath.row].name ?? ""
         cell.imageView?.image = UIImage(systemName: "folder.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
         return cell
     }
