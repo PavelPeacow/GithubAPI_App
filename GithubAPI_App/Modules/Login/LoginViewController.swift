@@ -32,11 +32,15 @@ final class LoginViewController: UIViewController {
 
 extension LoginViewController {
     @objc private func didTapLoginButton() {
+        loginView.loginButton.loadIndicator(shouldShow: true)
+        
         loginViewModel.loadGitHubAuthPromt(in: self, onCompleteion: { [weak self] user in
-            DispatchQueue.main.async {
+            
+            DispatchQueue.main.async { [weak self] in
                 let vc = UserProfileViewController()
                 vc.configure(with: user, isAuthUser: true)
                 self?.navigationController?.setViewControllers([vc], animated: true)
+                self?.loginView.loginButton.loadIndicator(shouldShow: false)
             }
             
         })

@@ -11,9 +11,9 @@ struct User: Decodable {
     let login: String
     let avatar_url: String
     let bio: String?
-    let public_repos: Int
-    let name: String
-    let location: String
-    let followers: Int
-    let following: Int
+    let public_repos: Int?
+    let name: String?
+    let location: String?
+    let followers: Int?
+    let following: Int?
 }

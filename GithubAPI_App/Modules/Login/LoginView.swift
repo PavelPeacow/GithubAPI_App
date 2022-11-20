@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginView: UIView {
+final class LoginView: UIView {
     
     lazy var stackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [githubIcon, appTitle, loginButton])
@@ -35,8 +35,8 @@ class LoginView: UIView {
         return image
     }()
     
-    lazy var loginButton: UIButton = {
-        let button = UIButton()
+    lazy var loginButton: UIButtonWithActivityIndicator = {
+        let button = UIButtonWithActivityIndicator()
         button.backgroundColor = .systemGreen
         button.layer.cornerRadius = 15
         button.setTitle("Login", for: .normal)

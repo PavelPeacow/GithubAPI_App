@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserProfileView: UIView {
+final class UserProfileView: UIView {
     
     lazy var userAvatar: UIImageView = {
         let image = UIImageView()
@@ -43,8 +43,8 @@ class UserProfileView: UIView {
         return label
     }()
     
-    lazy var showReposButton: UIButton = {
-        let button = UIButton()
+    lazy var showReposButton: UIButtonWithActivityIndicator = {
+        let button = UIButtonWithActivityIndicator()
         button.backgroundColor = .systemGreen
         button.layer.cornerRadius = 15
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -135,8 +135,8 @@ extension UserProfileView {
     func setConstraints() {
         NSLayoutConstraint.activate([
             stackViewMain.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 130),
-            stackViewMain.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
-            stackViewMain.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
+            stackViewMain.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
+            stackViewMain.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             
             userAvatar.heightAnchor.constraint(equalToConstant: 80),
             userAvatar.widthAnchor.constraint(equalToConstant: 80),
@@ -144,6 +144,7 @@ extension UserProfileView {
             horizontalStackView.topAnchor.constraint(equalTo: stackViewMain.bottomAnchor, constant: 15),
             horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
             horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
+            horizontalStackView.heightAnchor.constraint(equalToConstant: 40),
             
             showReposButton.heightAnchor.constraint(equalToConstant: 40),
             showReposButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),

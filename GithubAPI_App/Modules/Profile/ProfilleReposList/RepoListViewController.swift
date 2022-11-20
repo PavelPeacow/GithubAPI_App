@@ -7,11 +7,6 @@
 
 import UIKit
 
-enum GetRepos {
-    case user
-    case profle
-}
-
 final class RepoListViewController: UIViewController {
     
     private var repos = [Repo]() {
@@ -49,39 +44,10 @@ final class RepoListViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    func configureRepos(with type: GetRepos, _ username: String?) {
-        Task {
-            switch type {
-            case .user:
-                await getUserRepos(usernmame: username ?? "")
-            case .profle:
-                await getProfileRepos()
-            }
-        }
+    func configureRepos(with repos: [Repo]) {
+        self.repos = repos
     }
     
-}
-
-extension RepoListViewController {
-    private func getProfileRepos() async {
-        do {
-            let repos = try await APIManager.shared.getProfileRepo()
-            self.repos = repos
-            print(repos)
-        } catch {
-            print(error)
-        }
-    }
-    
-    private func getUserRepos(usernmame: String) async {
-        do {
-            let repos = try await APIManager.shared.getUserRepo(with: usernmame)
-            self.repos = repos
-            print(repos)
-        } catch {
-            print(error)
-        }
-    }
 }
 
 extension RepoListViewController: UITableViewDataSource {
@@ -95,7 +61,6 @@ extension RepoListViewController: UITableViewDataSource {
         cell.imageView?.image = UIImage(systemName: "folder.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
         return cell
     }
-    
     
 }
 

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchView: UIView {
+final class SearchView: UIView {
 
      lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [seacrhLabel, searchTextfield, searchButton])
@@ -41,8 +41,8 @@ class SearchView: UIView {
         return field
     }()
     
-     lazy var searchButton: UIButton = {
-        let button = UIButton()
+     lazy var searchButton: UIButtonWithActivityIndicator = {
+        let button = UIButtonWithActivityIndicator()
         button.setTitle("Search", for: .normal)
         button.backgroundColor = .systemGreen
         button.layer.cornerRadius = 5

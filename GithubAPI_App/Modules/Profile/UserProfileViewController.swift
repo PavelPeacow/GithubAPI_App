@@ -9,10 +9,10 @@ import UIKit
 
 final class UserProfileViewController: UIViewController {
     
-    var user: User!
     var isAuthUser = false
     
     let userProfileView = UserProfileView()
+    let userProfileViewModel = UserProfileViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ final class UserProfileViewController: UIViewController {
     }
     
     func configure(with model: User, isAuthUser: Bool) {
-        user = model
+        userProfileViewModel.user = model
         
         self.isAuthUser = isAuthUser
         
@@ -38,8 +38,8 @@ final class UserProfileViewController: UIViewController {
         userProfileView.userRealName.text = model.name
         userProfileView.userAvatar.downloadImage(with: model.avatar_url)
         
-        userProfileView.followersLabel.text = "followers: \(model.followers)"
-        userProfileView.followingLabel.text = "following: \(model.following)"
+        userProfileView.followingLabel.text = "following: \(model.following ?? 0)"
+        userProfileView.followersLabel.text = "followers: \(model.followers ?? 0)"
     }
     
 }
@@ -47,9 +47,16 @@ final class UserProfileViewController: UIViewController {
 extension UserProfileViewController {
     
     @objc func didTapReposButton() {
-        let vc = RepoListViewController()
-        vc.configureRepos(with: isAuthUser ? .profle : .user, isAuthUser ? nil : user.login)
-        navigationController?.pushViewController(vc, animated: true)
+        userProfileViewModel.loadRepos(isAuthUser: isAuthUser) { [weak self] repos in
+            DispatchQueue.main.async {
+                if !repos.isEmpty {
+                    let vc = RepoListViewController()
+                    vc.configureRepos(with: repos)
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    self?.doNotHaveReposAlert()
+                }
+            }
+        }
     }
-    
 }
