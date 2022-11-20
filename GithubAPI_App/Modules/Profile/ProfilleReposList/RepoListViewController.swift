@@ -14,7 +14,13 @@ enum GetRepos {
 
 final class RepoListViewController: UIViewController {
     
-    private var repos = [Repo]()
+    private var repos = [Repo]() {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
+    }
     
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -60,10 +66,7 @@ extension RepoListViewController {
     private func getProfileRepos() async {
         do {
             let repos = try await APIManager.shared.getProfileRepo()
-            DispatchQueue.main.async { [weak self] in
-                self?.repos = repos
-                self?.tableView.reloadData()
-            }
+            self.repos = repos
             print(repos)
         } catch {
             print(error)
@@ -73,10 +76,7 @@ extension RepoListViewController {
     private func getUserRepos(usernmame: String) async {
         do {
             let repos = try await APIManager.shared.getUserRepo(with: usernmame)
-            DispatchQueue.main.async { [weak self] in
-                self?.repos = repos
-                self?.tableView.reloadData()
-            }
+            self.repos = repos
             print(repos)
         } catch {
             print(error)

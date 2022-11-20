@@ -1,15 +1,15 @@
 //
-//  SearchViewController.swift
+//  SearchView.swift
 //  GithubAPI_App
 //
-//  Created by Павел Кай on 19.11.2022.
+//  Created by Павел Кай on 20.11.2022.
 //
 
 import UIKit
 
-final class SearchViewController: UIViewController {
-    
-    private lazy var stackView: UIStackView = {
+class SearchView: UIView {
+
+     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [seacrhLabel, searchTextfield, searchButton])
         stackView.spacing = 25
         stackView.axis = .vertical
@@ -19,7 +19,7 @@ final class SearchViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var seacrhLabel: UILabel = {
+     lazy var seacrhLabel: UILabel = {
         let label = UILabel()
         label.text = "Enter user name you want to find!"
         label.textAlignment = .center
@@ -29,7 +29,7 @@ final class SearchViewController: UIViewController {
         return label
     }()
     
-    private lazy var searchTextfield: UITextField = {
+     lazy var searchTextfield: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
         field.layer.cornerRadius = 5
@@ -41,59 +41,35 @@ final class SearchViewController: UIViewController {
         return field
     }()
     
-    private lazy var searchButton: UIButton = {
+     lazy var searchButton: UIButton = {
         let button = UIButton()
         button.setTitle("Search", for: .normal)
         button.backgroundColor = .systemGreen
         button.layer.cornerRadius = 5
-        button.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        title = "RepoViewer"
-        
-        view.addSubview(stackView)
-
-        view.backgroundColor = .systemBackground
+    init() {
+        super.init(frame: .zero)
+        addSubview(stackView)
         setConstraints()
     }
-
-
-}
-
-extension SearchViewController {
-    @objc func didTapSearchButton() {
-        Task {
-            await getUser()
-        }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    private func getUser() async {
-        do {
-            let result = try await APIManager.shared.getUser(username: searchTextfield.text ?? "")
-            
-            let vc = UserProfileViewController()
-            vc.configure(with: result, isAuthUser: false)
-            navigationController?.pushViewController(vc, animated: true)
-        } catch {
-            print(error)
-        }
-       
-    }
 }
 
-extension SearchViewController {
+extension SearchView {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
             
             searchTextfield.heightAnchor.constraint(equalToConstant: 30),
             searchTextfield.widthAnchor.constraint(equalToConstant: 300),

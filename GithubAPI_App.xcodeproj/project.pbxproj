@@ -21,6 +21,10 @@
 		B5FC04532929044B0048A949 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC04522929044B0048A949 /* UserProfileViewController.swift */; };
 		B5FC0455292907110048A949 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC0454292907110048A949 /* User.swift */; };
 		B5FC045729290BFE0048A949 /* UIImage+URLDowload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC045629290BFE0048A949 /* UIImage+URLDowload.swift */; };
+		B5FC045D292A72DB0048A949 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC045C292A72DB0048A949 /* LoginViewModel.swift */; };
+		B5FC0462292A7CE50048A949 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC0461292A7CE50048A949 /* LoginView.swift */; };
+		B5FC0464292A7DC50048A949 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC0463292A7DC50048A949 /* SearchView.swift */; };
+		B5FC0468292A7EE80048A949 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC0467292A7EE80048A949 /* UserProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		B5FC04522929044B0048A949 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		B5FC0454292907110048A949 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B5FC045629290BFE0048A949 /* UIImage+URLDowload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+URLDowload.swift"; sourceTree = "<group>"; };
+		B5FC045C292A72DB0048A949 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		B5FC0461292A7CE50048A949 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B5FC0463292A7DC50048A949 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		B5FC0467292A7EE80048A949 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +83,7 @@
 				B520B54E2923D3B10075E3AF /* App */,
 				B58822A929265806008B67B3 /* API */,
 				B5FC045829291E020048A949 /* Extension */,
-				B520B54D2923D3AD0075E3AF /* Controllers */,
+				B520B54D2923D3AD0075E3AF /* Modules */,
 				B58822A8292657FD008B67B3 /* Model */,
 				B520B54F2923D3C10075E3AF /* Resourses */,
 				B520B5472923D2EF0075E3AF /* Info.plist */,
@@ -83,17 +91,15 @@
 			path = GithubAPI_App;
 			sourceTree = "<group>";
 		};
-		B520B54D2923D3AD0075E3AF /* Controllers */ = {
+		B520B54D2923D3AD0075E3AF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				B5FC04502928FA860048A949 /* SearchViewController.swift */,
-				B520B55429264E3D0075E3AF /* LoginViewController.swift */,
-				B520B53D2923D2EE0075E3AF /* RepoListViewController.swift */,
 				B5FC044E2928ED240048A949 /* MainTabBarViewController.swift */,
-				B5FC04522929044B0048A949 /* UserProfileViewController.swift */,
-				B5FC045B292A65C70048A949 /* View */,
+				B5FC0460292A72FD0048A949 /* Search */,
+				B5FC045E292A72E90048A949 /* Login */,
+				B5FC045F292A72F80048A949 /* Profile */,
 			);
-			path = Controllers;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		B520B54E2923D3B10075E3AF /* App */ = {
@@ -140,11 +146,41 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		B5FC045B292A65C70048A949 /* View */ = {
+		B5FC045E292A72E90048A949 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				B5FC0461292A7CE50048A949 /* LoginView.swift */,
+				B520B55429264E3D0075E3AF /* LoginViewController.swift */,
+				B5FC045C292A72DB0048A949 /* LoginViewModel.swift */,
 			);
-			path = View;
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B5FC045F292A72F80048A949 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC0469292A7EEE0048A949 /* ProfilleReposList */,
+				B5FC0467292A7EE80048A949 /* UserProfileView.swift */,
+				B5FC04522929044B0048A949 /* UserProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		B5FC0460292A72FD0048A949 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC04502928FA860048A949 /* SearchViewController.swift */,
+				B5FC0463292A7DC50048A949 /* SearchView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		B5FC0469292A7EEE0048A949 /* ProfilleReposList */ = {
+			isa = PBXGroup;
+			children = (
+				B520B53D2923D2EE0075E3AF /* RepoListViewController.swift */,
+			);
+			path = ProfilleReposList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,10 +261,14 @@
 				B5FC04532929044B0048A949 /* UserProfileViewController.swift in Sources */,
 				B5FC044F2928ED240048A949 /* MainTabBarViewController.swift in Sources */,
 				B58822B029268767008B67B3 /* Token.swift in Sources */,
+				B5FC0462292A7CE50048A949 /* LoginView.swift in Sources */,
 				B5FC045729290BFE0048A949 /* UIImage+URLDowload.swift in Sources */,
 				B5FC04512928FA860048A949 /* SearchViewController.swift in Sources */,
 				B520B551292639150075E3AF /* APIManager.swift in Sources */,
 				B520B53E2923D2EE0075E3AF /* RepoListViewController.swift in Sources */,
+				B5FC045D292A72DB0048A949 /* LoginViewModel.swift in Sources */,
+				B5FC0464292A7DC50048A949 /* SearchView.swift in Sources */,
+				B5FC0468292A7EE80048A949 /* UserProfileView.swift in Sources */,
 				B520B55329263A820075E3AF /* Repo.swift in Sources */,
 				B520B53A2923D2EE0075E3AF /* AppDelegate.swift in Sources */,
 				B520B53C2923D2EE0075E3AF /* SceneDelegate.swift in Sources */,

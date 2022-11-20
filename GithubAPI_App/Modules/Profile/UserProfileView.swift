@@ -1,18 +1,15 @@
 //
-//  UserProfileViewController.swift
+//  UserProfileView.swift
 //  GithubAPI_App
 //
-//  Created by Павел Кай on 19.11.2022.
+//  Created by Павел Кай on 20.11.2022.
 //
 
 import UIKit
 
-final class UserProfileViewController: UIViewController {
+class UserProfileView: UIView {
     
-    var user: User!
-    var isAuthUser = false
-    
-    private lazy var userAvatar: UIImageView = {
+    lazy var userAvatar: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "person.circle")
         image.clipsToBounds = true
@@ -21,7 +18,7 @@ final class UserProfileViewController: UIViewController {
         return image
     }()
     
-    private lazy var userName: UILabel = {
+    lazy var userName: UILabel = {
         let label = UILabel()
         label.text = "PavelPeacow"
         label.font = .systemFont(ofSize: 20, weight: .heavy)
@@ -29,7 +26,7 @@ final class UserProfileViewController: UIViewController {
         return label
     }()
     
-    private lazy var userRealName: UILabel = {
+    lazy var userRealName: UILabel = {
         let label = UILabel()
         label.text = "Pavel Kai"
         label.font = .systemFont(ofSize: 20, weight: .bold)
@@ -38,7 +35,7 @@ final class UserProfileViewController: UIViewController {
         return label
     }()
     
-    private lazy var userBio: UILabel = {
+    lazy var userBio: UILabel = {
         let label = UILabel()
         label.text = "20 y.o student, interested in iOS development.\r\nLearning Swift.\r\nTelegram: @Pavel_Kai"
         label.numberOfLines = 0
@@ -46,32 +43,31 @@ final class UserProfileViewController: UIViewController {
         return label
     }()
     
-    private lazy var showReposButton: UIButton = {
+    lazy var showReposButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemGreen
-        button.addTarget(self, action: #selector(didTapReposButton), for: .touchUpInside)
         button.layer.cornerRadius = 15
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Show repositories", for: .normal)
         return button
     }()
-
-    private lazy var followersLabel: UILabel = {
+    
+    lazy var followersLabel: UILabel = {
         let label = UILabel()
         label.text = "followers: 4"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private lazy var followingLabel: UILabel = {
+    lazy var followingLabel: UILabel = {
         let label = UILabel()
         label.text = "following: 7"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-
-    private lazy var stackViewMain: UIStackView = {
+    
+    lazy var stackViewMain: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [stackView, stackView1])
         stackView.spacing = 10
         stackView.axis = .horizontal
@@ -85,7 +81,7 @@ final class UserProfileViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var stackView1: UIStackView = {
+    lazy var stackView1: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [stackView, userRealName, userName, userBio])
         stackView.spacing = 5
         stackView.axis = .vertical
@@ -95,7 +91,7 @@ final class UserProfileViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var stackView: UIStackView = {
+    lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [userAvatar])
         stackView.axis = .horizontal
         stackView.alignment = .center
@@ -104,7 +100,7 @@ final class UserProfileViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var horizontalStackView: UIStackView = {
+    lazy var horizontalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [followingLabel, followersLabel])
         stackView.axis = .horizontal
         stackView.alignment = .center
@@ -118,65 +114,40 @@ final class UserProfileViewController: UIViewController {
         return stackView
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        
-        
+    init() {
+        super.init(frame: .zero)
         addSubviews()
-        view.backgroundColor = .systemBackground
-        
         setConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func addSubviews() {
         [stackViewMain, horizontalStackView, showReposButton]
-                   .forEach { view.addSubview($0) }
-    }
-    
-    func configure(with model: User, isAuthUser: Bool) {
-        user = model
-        
-        self.isAuthUser = isAuthUser
-        
-        userName.text = model.login
-        userBio.text = model.bio
-        userRealName.text = model.name
-        userAvatar.downloadImage(with: model.avatar_url)
-        
-        followersLabel.text = "followers: \(model.followers)"
-        followingLabel.text = "following: \(model.following)"
+                   .forEach { addSubview($0) }
     }
     
 }
 
-extension UserProfileViewController {
-    
-    @objc func didTapReposButton() {
-        let vc = RepoListViewController()
-        vc.configureRepos(with: isAuthUser ? .profle : .user, isAuthUser ? nil : user.login)
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-}
-
-extension UserProfileViewController {
+extension UserProfileView {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            stackViewMain.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 130),
-            stackViewMain.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            stackViewMain.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            stackViewMain.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 130),
+            stackViewMain.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
+            stackViewMain.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
             
             userAvatar.heightAnchor.constraint(equalToConstant: 80),
             userAvatar.widthAnchor.constraint(equalToConstant: 80),
             
             horizontalStackView.topAnchor.constraint(equalTo: stackViewMain.bottomAnchor, constant: 15),
-            horizontalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            horizontalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
+            horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
             
             showReposButton.heightAnchor.constraint(equalToConstant: 40),
-            showReposButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6),
-            showReposButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            showReposButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
+            showReposButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             showReposButton.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 15),
         ])
     }
