@@ -14,18 +14,13 @@ final class MainTabBarViewController: UITabBarController {
 
         let profile = UINavigationController(rootViewController: LoginViewController())
         let search = UINavigationController(rootViewController: SearchViewController())
-        let lol = UINavigationController(rootViewController: UserProfileViewController())
         
-        profile.tabBarItem.title = "profile"
-        search.tabBarItem.title = "seach"
+        profile.tabBarItem.title = "Profile"
+        search.tabBarItem.title = "RepoViewer"
         
         profile.tabBarItem.image = UIImage(systemName: "person.circle")
         search.tabBarItem.image = UIImage(systemName: "magnifyingglass")
         
-        setViewControllers([lol, search, profile], animated: true)
+        setViewControllers([search, profile], animated: true)
     }
-    
-
-
-
 }

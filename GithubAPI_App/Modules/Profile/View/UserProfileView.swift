@@ -52,6 +52,15 @@ final class UserProfileView: UIView {
         return button
     }()
     
+    lazy var logoutButton: UIButtonWithActivityIndicator = {
+        let button = UIButtonWithActivityIndicator()
+        button.backgroundColor = .systemRed
+        button.layer.cornerRadius = 15
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Logout", for: .normal)
+        return button
+    }()
+    
     lazy var followersLabel: UILabel = {
         let label = UILabel()
         label.text = "followers: 4"
@@ -127,7 +136,7 @@ final class UserProfileView: UIView {
     }
     
     private func addSubviews() {
-        [stackViewMain, horizontalStackView, showReposButton]
+        [stackViewMain, horizontalStackView, showReposButton, logoutButton]
                    .forEach { addSubview($0) }
     }
     
@@ -152,6 +161,11 @@ extension UserProfileView {
             showReposButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
             showReposButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             showReposButton.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 15),
+            
+            logoutButton.heightAnchor.constraint(equalToConstant: 40),
+            logoutButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
+            logoutButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            logoutButton.topAnchor.constraint(equalTo: showReposButton.bottomAnchor, constant: 20),
         ])
     }
 }

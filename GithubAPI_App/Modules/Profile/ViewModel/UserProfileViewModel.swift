@@ -67,4 +67,8 @@ final class UserProfileViewModel {
         }
     }
     
+    func logout() {
+        APIManager.shared.accessToken = nil
+    }
+    
 }

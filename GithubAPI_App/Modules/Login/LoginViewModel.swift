@@ -29,6 +29,7 @@ final class LoginViewModel {
             }
         }
         session.presentationContextProvider = view as? any ASWebAuthenticationPresentationContextProviding
+        session.prefersEphemeralWebBrowserSession = true
         session.start()
     }
     

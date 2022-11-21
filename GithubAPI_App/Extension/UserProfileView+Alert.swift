@@ -10,7 +10,24 @@ import UIKit
 extension UserProfileViewController {
     
     func doNotHaveReposAlert() {
-        let ac = UIAlertController(title: "User do not have any repos!", message: nil, preferredStyle: .alert)
+        let ac = UIAlertController(title: "User does not have any repos!", message: nil, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "OK", style: .cancel)
+        
+        ac.addAction(cancel)
+        present(ac, animated: true)
+    }
+    
+    func doNotHavePeopleAlert(type: PeopleType) {
+        let title: String
+        
+        switch type {
+        case .followers:
+            title = "User does not have any followers!"
+        case .following:
+            title = "User does not follow anyone!"
+        }
+        
+        let ac = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "OK", style: .cancel)
         
         ac.addAction(cancel)

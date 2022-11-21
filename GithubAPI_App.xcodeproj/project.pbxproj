@@ -210,8 +210,8 @@
 			children = (
 				B594672D292B58C500D7B53F /* Cell */,
 				B594672F292B5D6300D7B53F /* Controller */,
-				B5FC0469292A7EEE0048A949 /* ViewModel */,
 				B594672E292B5D5200D7B53F /* View */,
+				B5FC0469292A7EEE0048A949 /* ViewModel */,
 			);
 			path = Profile;
 			sourceTree = "<group>";

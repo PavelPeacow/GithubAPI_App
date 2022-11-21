@@ -19,6 +19,19 @@ final class LoginViewController: UIViewController {
         setTargets()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        guard APIManager.shared.accessToken != nil else { return }
+        loginView.loginButton.loadIndicator(shouldShow: true)
+        Task {
+            if let user = try? await APIManager().getAuthUser() {
+                let vc = UserProfileViewController()
+                vc.configure(with: user, isAuthUser: true)
+                navigationController?.setViewControllers([vc], animated: true)
+                loginView.loginButton.loadIndicator(shouldShow: false)
+            }
+        }
+    }
+    
     override func loadView() {
         view = loginView
     }

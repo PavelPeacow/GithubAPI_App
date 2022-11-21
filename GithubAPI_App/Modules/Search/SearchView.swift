@@ -34,6 +34,8 @@ final class SearchView: UIView {
         field.backgroundColor = .white
         field.layer.cornerRadius = 5
         field.textColor = .black
+        field.autocorrectionType = .no
+        field.autocapitalizationType = .none
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
         field.leftView?.backgroundColor = .red
         field.leftViewMode = .always
