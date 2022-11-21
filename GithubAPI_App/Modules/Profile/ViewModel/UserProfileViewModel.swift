@@ -18,7 +18,7 @@ final class UserProfileViewModel {
             if isAuthUser {
                 repos = await getProfileRepos() ?? []
             } else {
-                repos = await getUserRepos(usernmame: user.login) ?? []
+                repos = await getUserRepos() ?? []
             }
 
             onCompletion(repos)
@@ -36,11 +36,31 @@ final class UserProfileViewModel {
         }
     }
     
-    private func getUserRepos(usernmame: String) async -> [Repo]? {
+    private func getUserRepos() async -> [Repo]? {
         do {
-            let repos = try await APIManager.shared.getUserRepo(with: usernmame)
+            let repos = try await APIManager.shared.getUserRepo(with: user.login)
             print(repos)
             return repos
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+    
+    func getUserFollowers() async -> [User]? {
+        do {
+            let users = try await APIManager.shared.getUserFollowers(with: user.login)
+            return users
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+    
+    func getUserFollowing() async -> [User]? {
+        do {
+            let users = try await APIManager.shared.getUserFollowing(with: user.login)
+            return users
         } catch {
             print(error)
             return nil

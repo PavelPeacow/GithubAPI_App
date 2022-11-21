@@ -53,11 +53,7 @@ final class APIManager {
     func getUser(username: String) async throws -> User {
         guard let url = URL(string: "https://api.github.com/users/\(username)") else { throw APIError.badURL }
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        guard let (data, _) = try? await URLSession.shared.data(for: request) else { throw APIError.canNotGetData }
+        guard let (data, _) = try? await URLSession.shared.data(from: url) else { throw APIError.canNotGetData }
         
         guard let result = try? JSONDecoder().decode(User.self, from: data) else { throw APIError.canNotDecode}
         print(result)
@@ -99,13 +95,31 @@ final class APIManager {
     func getUserRepo(with username: String) async throws -> [Repo] {
         guard let url = URL(string: "https://api.github.com/users/\(username)/repos?sort=updated&per_page=100") else { throw APIError.badURL }
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        guard let (data, _) = try? await URLSession.shared.data(for: request) else { throw APIError.canNotGetData }
+        guard let (data, _) = try? await URLSession.shared.data(from: url) else { throw APIError.canNotGetData }
         
         guard let result = try? JSONDecoder().decode([Repo].self, from: data) else { throw APIError.canNotDecode}
+        print(result)
+        
+        return result
+    }
+    
+    func getUserFollowers(with username: String) async throws -> [User] {
+        guard let url = URL(string: "https://api.github.com/users/\(username)/followers?per_page=100") else { throw APIError.badURL }
+        
+        guard let (data, _) = try? await URLSession.shared.data(from: url) else { throw APIError.canNotGetData }
+        
+        guard let result = try? JSONDecoder().decode([User].self, from: data) else { throw APIError.canNotDecode}
+        print(result)
+        
+        return result
+    }
+    
+    func getUserFollowing(with username: String) async throws -> [User] {
+        guard let url = URL(string: "https://api.github.com/users/\(username)/following?per_page=100") else { throw APIError.badURL }
+        
+        guard let (data, _) = try? await URLSession.shared.data(from: url) else { throw APIError.canNotGetData }
+        
+        guard let result = try? JSONDecoder().decode([User].self, from: data) else { throw APIError.canNotDecode}
         print(result)
         
         return result

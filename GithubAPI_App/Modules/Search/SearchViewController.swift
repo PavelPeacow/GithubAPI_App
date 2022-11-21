@@ -9,7 +9,7 @@ import UIKit
 
 final class SearchViewController: UIViewController {
     
-    let searchView = SearchView()
+    private let searchView = SearchView()
         
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -9,10 +9,10 @@ import UIKit
 
 final class UserProfileViewController: UIViewController {
     
-    var isAuthUser = false
+    private var isAuthUser = false
     
-    let userProfileView = UserProfileView()
-    let userProfileViewModel = UserProfileViewModel()
+    private let userProfileView = UserProfileView()
+    private let userProfileViewModel = UserProfileViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,12 @@ final class UserProfileViewController: UIViewController {
     
     private func setTargets() {
         userProfileView.showReposButton.addTarget(self, action: #selector(didTapReposButton), for: .touchUpInside)
+        
+        let tapFollowersGesture = UITapGestureRecognizer(target: self, action: #selector(didTapFollowersLabel))
+        let tapFollowingGesture = UITapGestureRecognizer(target: self, action: #selector(didTapFollowingLabel))
+        
+        userProfileView.followingLabel.addGestureRecognizer(tapFollowingGesture)
+        userProfileView.followersLabel.addGestureRecognizer(tapFollowersGesture)
     }
     
     func configure(with model: User, isAuthUser: Bool) {
@@ -46,16 +52,36 @@ final class UserProfileViewController: UIViewController {
 
 extension UserProfileViewController {
     
+    @objc func didTapFollowersLabel() {
+        Task {
+            let users = await userProfileViewModel.getUserFollowers()
+            let vc = PeopleListViewController()
+            vc.configure(with: users ?? [], username: userProfileViewModel.user.login, type: .followers)
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @objc func didTapFollowingLabel() {
+        Task {
+            let users = await userProfileViewModel.getUserFollowing()
+            let vc = PeopleListViewController()
+            vc.configure(with: users ?? [], username: userProfileViewModel.user.login, type: .following)
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     @objc func didTapReposButton() {
+        userProfileView.showReposButton.loadIndicator(shouldShow: true)
         userProfileViewModel.loadRepos(isAuthUser: isAuthUser) { [weak self] repos in
             DispatchQueue.main.async {
                 if !repos.isEmpty {
                     let vc = RepoListViewController()
-                    vc.configureRepos(with: repos)
+                    vc.configureRepos(with: repos, username: self?.userProfileViewModel.user.login ?? "")
                     self?.navigationController?.pushViewController(vc, animated: true)
                 } else {
                     self?.doNotHaveReposAlert()
                 }
+                self?.userProfileView.showReposButton.loadIndicator(shouldShow: false)
             }
         }
     }

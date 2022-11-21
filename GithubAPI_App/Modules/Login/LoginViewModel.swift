@@ -9,14 +9,14 @@ import AuthenticationServices
 
 final class LoginViewModel {
     
-    func loadGitHubAuthPromt(in view: UIViewController, onCompleteion: @escaping (User) -> Void) {
+    func loadGitHubAuthPromt(in view: UIViewController, onCompleteion: @escaping (User?) -> Void) {
         guard let url = URL(string: "https://github.com/login/oauth/authorize?client_id=7968bef2c624696f25e8&scope=read:user&scope=repo&state=TEST_STATE") else { return }
         let callBackScheme = "pavel.github.test.app"
         let session = ASWebAuthenticationSession(url: url, callbackURLScheme: callBackScheme) { callBackURL, error in
-            guard let callBackURL = callBackURL, error == nil else { print(error!); return}
+            guard let callBackURL = callBackURL, error == nil else { onCompleteion(nil); return}
             
-            guard let query = URLComponents(string: callBackURL.absoluteString)?.queryItems else { return }
-            guard let code = query.first(where: { $0.name == "code" } )?.value else { return }
+            guard let query = URLComponents(string: callBackURL.absoluteString)?.queryItems else { onCompleteion(nil); return }
+            guard let code = query.first(where: { $0.name == "code" } )?.value else { onCompleteion(nil); return }
             
             print(code)
             

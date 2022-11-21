@@ -13,7 +13,6 @@ final class LoginViewController: UIViewController {
     private let loginViewModel = LoginViewModel()
     private let loginView = LoginView()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -36,13 +35,17 @@ extension LoginViewController {
         
         loginViewModel.loadGitHubAuthPromt(in: self, onCompleteion: { [weak self] user in
             
-            DispatchQueue.main.async { [weak self] in
-                let vc = UserProfileViewController()
-                vc.configure(with: user, isAuthUser: true)
-                self?.navigationController?.setViewControllers([vc], animated: true)
+            if let user = user {
+                DispatchQueue.main.async {
+                    let vc = UserProfileViewController()
+                    vc.configure(with: user, isAuthUser: true)
+                    self?.navigationController?.setViewControllers([vc], animated: true)
+                    
+                }
+            }
+            DispatchQueue.main.async {
                 self?.loginView.loginButton.loadIndicator(shouldShow: false)
             }
-            
         })
     }
 }

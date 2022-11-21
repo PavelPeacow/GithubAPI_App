@@ -55,6 +55,7 @@ final class UserProfileView: UIView {
     lazy var followersLabel: UILabel = {
         let label = UILabel()
         label.text = "followers: 4"
+        label.isUserInteractionEnabled = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -62,6 +63,7 @@ final class UserProfileView: UIView {
     lazy var followingLabel: UILabel = {
         let label = UILabel()
         label.text = "following: 7"
+        label.isUserInteractionEnabled = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

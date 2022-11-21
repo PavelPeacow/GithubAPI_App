@@ -9,28 +9,19 @@ import UIKit
 
 final class RepoListViewController: UIViewController {
     
-    private var repos = [Repo]() {
-        didSet {
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-            }
-        }
-    }
+    private var repos = [Repo]()
+    private let userProfileVIewModel = UserProfileViewModel()
     
     private lazy var tableView: UITableView = {
         let table = UITableView()
-        table.backgroundColor = .purple
+        table.backgroundColor = .systemBackground
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return table
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Repositories"
-        
         view.addSubview(tableView)
-        view.backgroundColor = .red
         setDelegates()
     }
     
@@ -44,8 +35,9 @@ final class RepoListViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    func configureRepos(with repos: [Repo]) {
+    func configureRepos(with repos: [Repo], username: String) {
         self.repos = repos
+        title = "\(username) Repositories"
     }
     
 }

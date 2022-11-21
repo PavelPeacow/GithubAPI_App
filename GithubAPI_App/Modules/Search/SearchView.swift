@@ -8,8 +8,8 @@
 import UIKit
 
 final class SearchView: UIView {
-
-     lazy var stackView: UIStackView = {
+    
+    lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [seacrhLabel, searchTextfield, searchButton])
         stackView.spacing = 25
         stackView.axis = .vertical
@@ -19,7 +19,7 @@ final class SearchView: UIView {
         return stackView
     }()
     
-     lazy var seacrhLabel: UILabel = {
+    lazy var seacrhLabel: UILabel = {
         let label = UILabel()
         label.text = "Enter user name you want to find!"
         label.textAlignment = .center
@@ -29,7 +29,7 @@ final class SearchView: UIView {
         return label
     }()
     
-     lazy var searchTextfield: UITextField = {
+    lazy var searchTextfield: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
         field.layer.cornerRadius = 5
@@ -41,7 +41,7 @@ final class SearchView: UIView {
         return field
     }()
     
-     lazy var searchButton: UIButtonWithActivityIndicator = {
+    lazy var searchButton: UIButtonWithActivityIndicator = {
         let button = UIButtonWithActivityIndicator()
         button.setTitle("Search", for: .normal)
         button.backgroundColor = .systemGreen
