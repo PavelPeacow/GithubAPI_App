@@ -15,7 +15,6 @@ enum PeopleType {
 final class PeopleListViewController: UIViewController {
     
     private var users = [User]()
-    private let userProfileVIewModel = UserProfileViewModel()
     
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -57,6 +56,18 @@ final class PeopleListViewController: UIViewController {
     
 }
 
+extension PeopleListViewController {
+    func getUser(username: String) async -> User? {
+        do {
+            let user = try await APIManager.shared.getUser(username: username)
+            return user
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+}
+
 extension PeopleListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         users.count
@@ -76,8 +87,16 @@ extension PeopleListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let vc = UserProfileViewController()
-        vc.configure(with: users[indexPath.row], isAuthUser: false)
-        navigationController?.pushViewController(vc, animated: true)
+        Task {
+            let username = users[indexPath.row].login
+            if let user = await getUser(username: username) {
+                let vc = UserProfileViewController()
+                vc.configure(with: user, isAuthUser: false)
+                navigationController?.pushViewController(vc, animated: true)
+            } else {
+                print("user not found")
+            }
+        }
+        
     }
 }

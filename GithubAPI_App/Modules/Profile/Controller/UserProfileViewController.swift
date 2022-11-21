@@ -42,7 +42,7 @@ final class UserProfileViewController: UIViewController {
     }
     
     func configure(with model: User, isAuthUser: Bool) {
-        user = model
+        userProfileViewModel.user = model
         
         self.isAuthUser = isAuthUser
         userProfileView.userName.text = model.login

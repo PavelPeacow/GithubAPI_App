@@ -13,7 +13,7 @@ final class UserProfileView: UIView {
         let image = UIImageView()
         image.image = UIImage(systemName: "person.circle")
         image.clipsToBounds = true
-        image.layer.cornerRadius = 28
+        image.layer.cornerRadius = 25
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -79,24 +79,26 @@ final class UserProfileView: UIView {
     
     
     lazy var stackViewMain: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [stackView, stackView1])
-        stackView.spacing = 10
-        stackView.axis = .horizontal
-        stackView.backgroundColor = .systemGray6
-        stackView.layer.cornerRadius = 25
+        let stackView = UIStackView(arrangedSubviews: [stackView, stackViewBio])
+        stackView.spacing = 15
+        stackView.axis = .vertical
         stackView.layoutMargins = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.alignment = .fill
+        stackView.alignment = .center
         stackView.distribution = .fillProportionally
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
-    lazy var stackView1: UIStackView = {
+    lazy var stackViewBio: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [stackView, userRealName, userName, userBio])
         stackView.spacing = 5
         stackView.axis = .vertical
+        stackView.backgroundColor = .systemGray6
         stackView.alignment = .fill
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
+        stackView.layer.cornerRadius = 25
         stackView.distribution = .fillProportionally
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -105,7 +107,11 @@ final class UserProfileView: UIView {
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [userAvatar])
         stackView.axis = .horizontal
+        stackView.backgroundColor = .systemGray6
         stackView.alignment = .center
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
+        stackView.layer.cornerRadius = 25
         stackView.distribution = .fillProportionally
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -145,12 +151,12 @@ final class UserProfileView: UIView {
 extension UserProfileView {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            stackViewMain.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 130),
+            stackViewMain.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 60),
             stackViewMain.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             stackViewMain.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             
-            userAvatar.heightAnchor.constraint(equalToConstant: 80),
-            userAvatar.widthAnchor.constraint(equalToConstant: 80),
+            userAvatar.heightAnchor.constraint(equalToConstant: 110),
+            userAvatar.widthAnchor.constraint(equalToConstant: 100),
             
             horizontalStackView.topAnchor.constraint(equalTo: stackViewMain.bottomAnchor, constant: 15),
             horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),

@@ -10,7 +10,6 @@ import UIKit
 final class RepoListViewController: UIViewController {
     
     private var repos = [Repo]()
-    private let userProfileVIewModel = UserProfileViewModel()
     
     private lazy var tableView: UITableView = {
         let table = UITableView()
