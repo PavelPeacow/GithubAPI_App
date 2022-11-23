@@ -22,6 +22,8 @@
 		B594672C292B58C100D7B53F /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B594672B292B58C100D7B53F /* PeopleTableViewCell.swift */; };
 		B5946737292E3FEC00D7B53F /* RepoContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5946736292E3FEC00D7B53F /* RepoContent.swift */; };
 		B5946739292E422B00D7B53F /* RepoContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5946738292E422B00D7B53F /* RepoContentListViewController.swift */; };
+		B594673B292E4AFC00D7B53F /* String+DecodeContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B594673A292E4AFC00D7B53F /* String+DecodeContent.swift */; };
+		B594673D292E507300D7B53F /* FileContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B594673C292E507300D7B53F /* FileContentViewController.swift */; };
 		B5FC044F2928ED240048A949 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC044E2928ED240048A949 /* MainTabBarViewController.swift */; };
 		B5FC04512928FA860048A949 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC04502928FA860048A949 /* SearchViewController.swift */; };
 		B5FC04532929044B0048A949 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC04522929044B0048A949 /* UserProfileViewController.swift */; };
@@ -53,6 +55,8 @@
 		B594672B292B58C100D7B53F /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		B5946736292E3FEC00D7B53F /* RepoContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoContent.swift; sourceTree = "<group>"; };
 		B5946738292E422B00D7B53F /* RepoContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoContentListViewController.swift; sourceTree = "<group>"; };
+		B594673A292E4AFC00D7B53F /* String+DecodeContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DecodeContent.swift"; sourceTree = "<group>"; };
+		B594673C292E507300D7B53F /* FileContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileContentViewController.swift; sourceTree = "<group>"; };
 		B5FC044E2928ED240048A949 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		B5FC04502928FA860048A949 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B5FC04522929044B0048A949 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -177,8 +181,7 @@
 			children = (
 				B5FC04522929044B0048A949 /* UserProfileViewController.swift */,
 				B5946726292B49C300D7B53F /* PeopleListViewController.swift */,
-				B520B53D2923D2EE0075E3AF /* RepoListViewController.swift */,
-				B5946738292E422B00D7B53F /* RepoContentListViewController.swift */,
+				B594673E292E591C00D7B53F /* Repo */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -191,12 +194,23 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		B594673E292E591C00D7B53F /* Repo */ = {
+			isa = PBXGroup;
+			children = (
+				B520B53D2923D2EE0075E3AF /* RepoListViewController.swift */,
+				B5946738292E422B00D7B53F /* RepoContentListViewController.swift */,
+				B594673C292E507300D7B53F /* FileContentViewController.swift */,
+			);
+			path = Repo;
+			sourceTree = "<group>";
+		};
 		B5FC045829291E020048A949 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				B5FC045629290BFE0048A949 /* UIImage+URLDowload.swift */,
 				B5FC046A292A81E60048A949 /* SearchView+Alert.swift */,
 				B5946724292A9AFD00D7B53F /* UserProfileView+Alert.swift */,
+				B594673A292E4AFC00D7B53F /* String+DecodeContent.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -322,10 +336,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B520B55529264E3D0075E3AF /* LoginViewController.swift in Sources */,
+				B594673B292E4AFC00D7B53F /* String+DecodeContent.swift in Sources */,
 				B5FC046D292A8E680048A949 /* UIButtonWithActivityIndicator.swift in Sources */,
 				B5FC04532929044B0048A949 /* UserProfileViewController.swift in Sources */,
 				B5FC044F2928ED240048A949 /* MainTabBarViewController.swift in Sources */,
 				B5946725292A9AFD00D7B53F /* UserProfileView+Alert.swift in Sources */,
+				B594673D292E507300D7B53F /* FileContentViewController.swift in Sources */,
 				B58822B029268767008B67B3 /* Token.swift in Sources */,
 				B5FC0462292A7CE50048A949 /* LoginView.swift in Sources */,
 				B5FC045729290BFE0048A949 /* UIImage+URLDowload.swift in Sources */,

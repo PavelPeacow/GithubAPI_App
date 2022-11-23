@@ -92,6 +92,22 @@ final class APIManager {
         return result
         
     }
+    
+    func getRepoContentSingle(owner: String, repositoryName: String, path: String?) async throws -> RepoContent {
+        guard let url = URL(string: "https://api.github.com/repos/\(owner)/\(repositoryName)/contents/\(path ?? "")") else { throw APIError.badURL }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(accessToken ?? "")", forHTTPHeaderField: "Authorization")
+        
+        guard let (data, _) = try? await URLSession.shared.data(for: request) else { throw APIError.canNotGetData }
+        
+        guard let result = try? JSONDecoder().decode(RepoContent.self, from: data) else { throw APIError.canNotDecode}
+        print(result)
+        
+        return result
+        
+    }
         
     func getProfileRepo() async throws -> [Repo] {
         guard let url = URL(string: "https://api.github.com/user/repos?sort=updated&per_page=100&") else { throw APIError.badURL }
