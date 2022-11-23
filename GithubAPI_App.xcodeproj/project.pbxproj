@@ -20,6 +20,8 @@
 		B5946725292A9AFD00D7B53F /* UserProfileView+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5946724292A9AFD00D7B53F /* UserProfileView+Alert.swift */; };
 		B5946727292B49C300D7B53F /* PeopleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5946726292B49C300D7B53F /* PeopleListViewController.swift */; };
 		B594672C292B58C100D7B53F /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B594672B292B58C100D7B53F /* PeopleTableViewCell.swift */; };
+		B5946737292E3FEC00D7B53F /* RepoContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5946736292E3FEC00D7B53F /* RepoContent.swift */; };
+		B5946739292E422B00D7B53F /* RepoContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5946738292E422B00D7B53F /* RepoContentListViewController.swift */; };
 		B5FC044F2928ED240048A949 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC044E2928ED240048A949 /* MainTabBarViewController.swift */; };
 		B5FC04512928FA860048A949 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC04502928FA860048A949 /* SearchViewController.swift */; };
 		B5FC04532929044B0048A949 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC04522929044B0048A949 /* UserProfileViewController.swift */; };
@@ -49,6 +51,8 @@
 		B5946724292A9AFD00D7B53F /* UserProfileView+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileView+Alert.swift"; sourceTree = "<group>"; };
 		B5946726292B49C300D7B53F /* PeopleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewController.swift; sourceTree = "<group>"; };
 		B594672B292B58C100D7B53F /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
+		B5946736292E3FEC00D7B53F /* RepoContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoContent.swift; sourceTree = "<group>"; };
+		B5946738292E422B00D7B53F /* RepoContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoContentListViewController.swift; sourceTree = "<group>"; };
 		B5FC044E2928ED240048A949 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		B5FC04502928FA860048A949 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B5FC04522929044B0048A949 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 				B520B55229263A820075E3AF /* Repo.swift */,
 				B58822AF29268767008B67B3 /* Token.swift */,
 				B5FC0454292907110048A949 /* User.swift */,
+				B5946736292E3FEC00D7B53F /* RepoContent.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 				B5FC04522929044B0048A949 /* UserProfileViewController.swift */,
 				B5946726292B49C300D7B53F /* PeopleListViewController.swift */,
 				B520B53D2923D2EE0075E3AF /* RepoListViewController.swift */,
+				B5946738292E422B00D7B53F /* RepoContentListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -325,11 +331,13 @@
 				B5FC045729290BFE0048A949 /* UIImage+URLDowload.swift in Sources */,
 				B5FC046B292A81E60048A949 /* SearchView+Alert.swift in Sources */,
 				B5FC04512928FA860048A949 /* SearchViewController.swift in Sources */,
+				B5946739292E422B00D7B53F /* RepoContentListViewController.swift in Sources */,
 				B5946727292B49C300D7B53F /* PeopleListViewController.swift in Sources */,
 				B520B551292639150075E3AF /* APIManager.swift in Sources */,
 				B520B53E2923D2EE0075E3AF /* RepoListViewController.swift in Sources */,
 				B5FC045D292A72DB0048A949 /* LoginViewModel.swift in Sources */,
 				B594672C292B58C100D7B53F /* PeopleTableViewCell.swift in Sources */,
+				B5946737292E3FEC00D7B53F /* RepoContent.swift in Sources */,
 				B5FC0464292A7DC50048A949 /* SearchView.swift in Sources */,
 				B5946723292A97C700D7B53F /* UserProfileViewModel.swift in Sources */,
 				B5FC0468292A7EE80048A949 /* UserProfileView.swift in Sources */,
