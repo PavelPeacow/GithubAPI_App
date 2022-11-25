@@ -47,7 +47,7 @@ final class RepoContentListViewController: UIViewController {
 extension RepoContentListViewController {
     func getRepoContent(username: String, repoName: String, path: String) async -> [RepoContent]? {
         do {
-            let content = try await APIManager.shared.getRepoContent(owner: username, repositoryName: repoName, path: path)
+            let content = try await APIManager.shared.getGithubContentWithAuthToken(returnType: [RepoContent].self, endpoint: .getRepoContent(owner: username, repositoryName: repoName, path: path))
             return content
         } catch {
             print(error)
@@ -57,7 +57,7 @@ extension RepoContentListViewController {
     
     func getRepoContentSingle(username: String, repoName: String, path: String) async -> RepoContent? {
         do {
-            let content = try await APIManager.shared.getRepoContentSingle(owner: username, repositoryName: repoName, path: path)
+            let content = try await APIManager.shared.getGithubContentWithAuthToken(returnType: RepoContent.self, endpoint: .getRepoContent(owner: username, repositoryName: repoName, path: path))
             return content
         } catch {
             print(error)

@@ -23,7 +23,7 @@ final class LoginViewController: UIViewController {
         guard APIManager.shared.accessToken != nil else { return }
         loginView.loginButton.loadIndicator(shouldShow: true)
         Task {
-            if let user = try? await APIManager().getAuthUser() {
+            if let user = try? await APIManager.shared.getGithubContentWithAuthToken(returnType: User.self, endpoint: .getAuthUser) {
                 let vc = UserProfileViewController()
                 vc.configure(with: user, isAuthUser: true)
                 navigationController?.setViewControllers([vc], animated: true)

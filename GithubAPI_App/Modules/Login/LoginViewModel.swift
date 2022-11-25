@@ -43,7 +43,7 @@ final class LoginViewModel {
     
     private func getAuthUser() async -> User? {
         do {
-            let user = try await APIManager.shared.getAuthUser()
+            let user = try await APIManager.shared.getGithubContentWithAuthToken(returnType: User.self, endpoint: .getAuthUser)
             return user
         } catch {
             print(error)

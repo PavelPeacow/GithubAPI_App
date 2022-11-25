@@ -59,7 +59,7 @@ final class PeopleListViewController: UIViewController {
 extension PeopleListViewController {
     func getUser(username: String) async -> User? {
         do {
-            let user = try await APIManager.shared.getUser(username: username)
+            let user = try await APIManager.shared.getGithubContentProfileRelated(returnType: User.self, endpoint: .getUserProfile(username: username))
             return user
         } catch {
             print(error)

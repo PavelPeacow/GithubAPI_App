@@ -41,14 +41,14 @@ extension SearchViewController {
     @objc func didTapSearchButton() {
         Task {
             searchView.searchButton.loadIndicator(shouldShow: true)
-            await getUser()
+            await getUser(username: searchView.searchTextfield.text ?? "")
             searchView.searchButton.loadIndicator(shouldShow: false)
         }
     }
     
-    private func getUser() async {
+    private func getUser(username: String) async {
         do {
-            let result = try await APIManager.shared.getUser(username: searchView.searchTextfield.text ?? "")
+            let result = try await APIManager.shared.getGithubContentProfileRelated(returnType: User.self, endpoint: .getUserProfile(username: username))
             
             let vc = UserProfileViewController()
             vc.configure(with: result, isAuthUser: false)

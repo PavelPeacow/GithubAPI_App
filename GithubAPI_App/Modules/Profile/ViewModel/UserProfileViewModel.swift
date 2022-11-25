@@ -27,7 +27,7 @@ final class UserProfileViewModel {
     
     private func getProfileRepos() async -> [Repo]? {
         do {
-            let repos = try await APIManager.shared.getProfileRepo()
+            let repos = try await APIManager.shared.getGithubContentWithAuthToken(returnType: [Repo].self, endpoint: .getAuthUserRepos)
             print(repos)
             return repos
         } catch {
@@ -38,7 +38,7 @@ final class UserProfileViewModel {
     
     private func getUserRepos() async -> [Repo]? {
         do {
-            let repos = try await APIManager.shared.getUserRepo(with: user.login)
+            let repos = try await APIManager.shared.getGithubContentProfileRelated(returnType: [Repo].self, endpoint: .getUserRepos(username: user.login))
             print(repos)
             return repos
         } catch {
@@ -49,7 +49,7 @@ final class UserProfileViewModel {
     
     func getUserFollowers() async -> [User]? {
         do {
-            let users = try await APIManager.shared.getUserFollowers(with: user.login)
+            let users = try await APIManager.shared.getGithubContentProfileRelated(returnType: [User].self, endpoint: .getUserFollowers(username: user.login))
             return users
         } catch {
             print(error)
@@ -59,7 +59,7 @@ final class UserProfileViewModel {
     
     func getUserFollowing() async -> [User]? {
         do {
-            let users = try await APIManager.shared.getUserFollowing(with: user.login)
+            let users = try await APIManager.shared.getGithubContentProfileRelated(returnType: [User].self, endpoint: .getUserFollowing(username: user.login))
             return users
         } catch {
             print(error)
