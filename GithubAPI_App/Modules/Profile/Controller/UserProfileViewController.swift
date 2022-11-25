@@ -33,6 +33,7 @@ final class UserProfileViewController: UIViewController {
     private func setTargets() {
         userProfileView.showReposButton.addTarget(self, action: #selector(didTapReposButton), for: .touchUpInside)
         userProfileView.logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
+        userProfileView.showInGithubButton.addTarget(self, action: #selector(didTapShowInGithubButton), for: .touchUpInside)
         
         let tapFollowersGesture = UITapGestureRecognizer(target: self, action: #selector(didTapFollowersLabel))
         let tapFollowingGesture = UITapGestureRecognizer(target: self, action: #selector(didTapFollowingLabel))
@@ -95,6 +96,12 @@ extension UserProfileViewController {
                 }
                 self?.userProfileView.showReposButton.loadIndicator(shouldShow: false)
             }
+        }
+    }
+    
+    @objc func didTapShowInGithubButton() {
+        if let vc = userProfileViewModel.didTapShowInGithubButton() {
+            present(vc, animated: true)
         }
     }
     

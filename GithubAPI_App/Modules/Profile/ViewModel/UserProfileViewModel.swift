@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SafariServices
 
 final class UserProfileViewModel {
     
@@ -65,6 +66,17 @@ final class UserProfileViewModel {
             print(error)
             return nil
         }
+    }
+    
+    func didTapShowInGithubButton() -> SFSafariViewController? {
+        if let url = URL(string: user.html_url ?? "") {
+                let config = SFSafariViewController.Configuration()
+                config.entersReaderIfAvailable = true
+
+                let vc = SFSafariViewController(url: url, configuration: config)
+                return vc
+            }
+        return nil
     }
     
     func logout() {

@@ -11,7 +11,6 @@ final class UserProfileView: UIView {
     
     lazy var userAvatar: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "person.circle")
         image.clipsToBounds = true
         image.layer.cornerRadius = 25
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -20,7 +19,6 @@ final class UserProfileView: UIView {
     
     lazy var userName: UILabel = {
         let label = UILabel()
-        label.text = "PavelPeacow"
         label.font = .systemFont(ofSize: 20, weight: .heavy)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -28,7 +26,6 @@ final class UserProfileView: UIView {
     
     lazy var userRealName: UILabel = {
         let label = UILabel()
-        label.text = "Pavel Kai"
         label.font = .systemFont(ofSize: 20, weight: .bold)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +34,6 @@ final class UserProfileView: UIView {
     
     lazy var userBio: UILabel = {
         let label = UILabel()
-        label.text = "20 y.o student, interested in iOS development.\r\nLearning Swift.\r\nTelegram: @Pavel_Kai"
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -61,9 +57,18 @@ final class UserProfileView: UIView {
         return button
     }()
     
+    lazy var showInGithubButton: UIButtonWithActivityIndicator = {
+        let button = UIButtonWithActivityIndicator()
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 15
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Show in Github", for: .normal)
+        return button
+    }()
+    
     lazy var followersLabel: UILabel = {
         let label = UILabel()
-        label.text = "followers: 4"
+        label.textAlignment = .right
         label.isUserInteractionEnabled = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -71,44 +76,17 @@ final class UserProfileView: UIView {
     
     lazy var followingLabel: UILabel = {
         let label = UILabel()
-        label.text = "following: 7"
         label.isUserInteractionEnabled = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    
-    lazy var stackViewMain: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [stackView, stackViewBio])
-        stackView.spacing = 15
-        stackView.axis = .vertical
-        stackView.layoutMargins = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.alignment = .center
-        stackView.distribution = .fillProportionally
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
     lazy var stackViewBio: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [stackView, userRealName, userName, userBio])
+        let stackView = UIStackView(arrangedSubviews: [userRealName, userName, userBio])
         stackView.spacing = 5
         stackView.axis = .vertical
         stackView.backgroundColor = .systemGray6
         stackView.alignment = .fill
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
-        stackView.layer.cornerRadius = 25
-        stackView.distribution = .fillProportionally
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [userAvatar])
-        stackView.axis = .horizontal
-        stackView.backgroundColor = .systemGray6
-        stackView.alignment = .center
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.layoutMargins = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
         stackView.layer.cornerRadius = 25
@@ -126,6 +104,16 @@ final class UserProfileView: UIView {
         stackView.layoutMargins = UIEdgeInsets(top: 3, left: 15, bottom: 3, right: 15)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.spacing = 25
+        stackView.distribution = .fillProportionally
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    lazy var buttonsStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [showReposButton, showInGithubButton, logoutButton])
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.spacing = 15
         stackView.distribution = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -142,7 +130,7 @@ final class UserProfileView: UIView {
     }
     
     private func addSubviews() {
-        [stackViewMain, horizontalStackView, showReposButton, logoutButton]
+        [userAvatar, stackViewBio, horizontalStackView, buttonsStackView]
                    .forEach { addSubview($0) }
     }
     
@@ -151,27 +139,23 @@ final class UserProfileView: UIView {
 extension UserProfileView {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            stackViewMain.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 60),
-            stackViewMain.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
-            stackViewMain.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
-            
+            userAvatar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 60),
+            userAvatar.centerXAnchor.constraint(equalTo: centerXAnchor),
             userAvatar.heightAnchor.constraint(equalToConstant: 110),
             userAvatar.widthAnchor.constraint(equalToConstant: 100),
             
-            horizontalStackView.topAnchor.constraint(equalTo: stackViewMain.bottomAnchor, constant: 15),
-            horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
-            horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
+            stackViewBio.topAnchor.constraint(equalTo: userAvatar.bottomAnchor, constant: 15),
+            stackViewBio.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
+            stackViewBio.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+                        
+            horizontalStackView.topAnchor.constraint(equalTo: stackViewBio.bottomAnchor, constant: 15),
+            horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 60),
+            horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -60),
             horizontalStackView.heightAnchor.constraint(equalToConstant: 40),
             
-            showReposButton.heightAnchor.constraint(equalToConstant: 40),
-            showReposButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
-            showReposButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            showReposButton.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 15),
-            
-            logoutButton.heightAnchor.constraint(equalToConstant: 40),
-            logoutButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
-            logoutButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            logoutButton.topAnchor.constraint(equalTo: showReposButton.bottomAnchor, constant: 20),
+            buttonsStackView.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 25),
+            buttonsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
+            buttonsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
         ])
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 
 struct User: Decodable {
     let login: String
+    let html_url: String?
     let avatar_url: String
     let bio: String?
     let public_repos: Int?
