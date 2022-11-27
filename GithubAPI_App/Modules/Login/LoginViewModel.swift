@@ -35,7 +35,7 @@ final class LoginViewModel {
     
     private func getUserToken(code: String) async {
         do {
-            try await APIManager.shared.getUserToken(with: code)
+            try await NetworkLayer().getUserToken(endpoint: .getUserToken(code: code))
         } catch {
             print(error)
         }
@@ -43,7 +43,7 @@ final class LoginViewModel {
     
     private func getAuthUser() async -> User? {
         do {
-            let user = try await APIManager.shared.getGithubContentWithAuthToken(returnType: User.self, endpoint: .getAuthUser)
+            let user = try await NetworkLayer().getGithubContentWithAuthToken(returnType: User.self, endpoint: .getAuthUser)
             return user
         } catch {
             print(error)

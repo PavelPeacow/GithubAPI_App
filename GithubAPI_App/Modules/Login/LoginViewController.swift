@@ -20,10 +20,10 @@ final class LoginViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        guard APIManager.shared.accessToken != nil else { return }
+        guard NetworkLayer().accessToken != nil else { return }
         loginView.loginButton.loadIndicator(shouldShow: true)
         Task {
-            if let user = try? await APIManager.shared.getGithubContentWithAuthToken(returnType: User.self, endpoint: .getAuthUser) {
+            if let user = try? await NetworkLayer().getGithubContentWithAuthToken(returnType: User.self, endpoint: .getAuthUser) {
                 let vc = UserProfileViewController()
                 vc.configure(with: user, isAuthUser: true)
                 navigationController?.setViewControllers([vc], animated: true)

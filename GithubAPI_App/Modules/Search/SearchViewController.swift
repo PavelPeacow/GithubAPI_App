@@ -48,7 +48,7 @@ extension SearchViewController {
     
     private func getUser(username: String) async {
         do {
-            let result = try await APIManager.shared.getGithubContentProfileRelated(returnType: User.self, endpoint: .getUserProfile(username: username))
+            let result = try await NetworkLayer().getGithubContentProfileRelated(returnType: User.self, endpoint: .getUserProfile(username: username))
             
             let vc = UserProfileViewController()
             vc.configure(with: result, isAuthUser: false)
