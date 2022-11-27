@@ -20,16 +20,7 @@ final class LoginViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        guard NetworkLayer().accessToken != nil else { return }
-        loginView.loginButton.loadIndicator(shouldShow: true)
-        Task {
-            if let user = try? await NetworkLayer().getGithubContentWithAuthToken(returnType: User.self, endpoint: .getAuthUser) {
-                let vc = UserProfileViewController()
-                vc.configure(with: user, isAuthUser: true)
-                navigationController?.setViewControllers([vc], animated: true)
-                loginView.loginButton.loadIndicator(shouldShow: false)
-            }
-        }
+        tryGetUser()
     }
     
     override func loadView() {
@@ -60,6 +51,19 @@ extension LoginViewController {
                 self?.loginView.loginButton.loadIndicator(shouldShow: false)
             }
         })
+    }
+    
+    private func tryGetUser() {
+        guard NetworkLayer().accessToken != nil else { return }
+        loginView.loginButton.loadIndicator(shouldShow: true)
+        Task {
+            if let user = try? await NetworkLayer().getGithubContent(returnType: User.self, endpoint: .getAuthUser) {
+                let vc = UserProfileViewController()
+                vc.configure(with: user, isAuthUser: true)
+                navigationController?.setViewControllers([vc], animated: true)
+                loginView.loginButton.loadIndicator(shouldShow: false)
+            }
+        }
     }
 }
 

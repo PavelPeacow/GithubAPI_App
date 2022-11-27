@@ -9,8 +9,7 @@ import Foundation
 
 protocol NetworkLayerProtocol {
     func getUserToken(endpoint: Endpoint) async throws
-    func getGithubContentWithAuthToken<T: Decodable>(returnType: T.Type, endpoint: Endpoint) async throws -> T
-    func getGithubContentProfileRelated<T: Decodable>(returnType: T.Type, endpoint: Endpoint) async throws -> T
+    func getGithubContent<T: Decodable>(returnType: T.Type, endpoint: Endpoint) async throws -> T
 }
 
 enum APIError: Error {
@@ -19,7 +18,6 @@ enum APIError: Error {
     case canNotGetData
     case canNotDecode
 }
-
 
 extension NetworkLayer {
     static private let accessTokenKey = "accessToken"
@@ -55,7 +53,7 @@ final class NetworkLayer: NetworkLayerProtocol {
         accessToken = result.access_token
     }
     
-    func getGithubContentWithAuthToken<T: Decodable>(returnType: T.Type, endpoint: Endpoint) async throws -> T {
+    func getGithubContent<T: Decodable>(returnType: T.Type, endpoint: Endpoint) async throws -> T {
         guard let url = endpoint.url else { throw APIError.badURL }
         guard let request = endpoint.getRequest(url: url) else { throw APIError.badRequest }
        
@@ -66,17 +64,4 @@ final class NetworkLayer: NetworkLayerProtocol {
                 
         return result
     }
-    
-    func getGithubContentProfileRelated<T: Decodable>(returnType: T.Type, endpoint: Endpoint) async throws -> T {
-        guard let url = endpoint.url else { throw APIError.badURL }
-        guard let request = endpoint.getRequest(url: url) else { throw APIError.badRequest }
-        
-        guard let (data, _) = try? await urlSession.data(for: request) else { throw APIError.canNotGetData }
-        
-        guard let result = try? jsonDecoder.decode(T.self, from: data) else { throw APIError.canNotDecode }
-        print(result)
-        
-        return result
-    }
-    
 }

@@ -9,9 +9,7 @@ import UIKit
 
 final class RepoContentListViewController: UIViewController {
     
-    private var repoContent = [RepoContent]()
-    private var username = ""
-    private var repoName = ""
+    private let repoContentViewModel = RepoContentViewModel()
     
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -37,44 +35,22 @@ final class RepoContentListViewController: UIViewController {
     }
     
     func configureRepos(with repoContent: [RepoContent], username: String, repoName: String) {
-        self.repoContent = repoContent
-        self.username = username
-        self.repoName = repoName
-    }
-    
-}
-
-extension RepoContentListViewController {
-    func getRepoContent(username: String, repoName: String, path: String) async -> [RepoContent]? {
-        do {
-            let content = try await NetworkLayer().getGithubContentWithAuthToken(returnType: [RepoContent].self, endpoint: .getRepoContent(owner: username, repositoryName: repoName, path: path))
-            return content
-        } catch {
-            print(error)
-            return nil
-        }
-    }
-    
-    func getRepoContentSingle(username: String, repoName: String, path: String) async -> RepoContent? {
-        do {
-            let content = try await NetworkLayer().getGithubContentWithAuthToken(returnType: RepoContent.self, endpoint: .getRepoContent(owner: username, repositoryName: repoName, path: path))
-            return content
-        } catch {
-            print(error)
-            return nil
-        }
+        repoContentViewModel.repoContent = repoContent
+        repoContentViewModel.username = username
+        repoContentViewModel.repoName = repoName
+        title = repoName
     }
     
 }
 
 extension RepoContentListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        repoContent.count
+        repoContentViewModel.repoContent.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let repoItem = repoContent[indexPath.row]
+        let repoItem = repoContentViewModel.repoContent[indexPath.row]
         let repoIcon: UIImage?
         cell.textLabel?.text = repoItem.name
         
@@ -90,18 +66,19 @@ extension RepoContentListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let repoItem = repoContent[indexPath.row]
+        let repoItem = repoContentViewModel.repoContent[indexPath.row]
         
-        let username = username
-        let repoName = repoName
+        let username = repoContentViewModel.username
+        let repoName = repoContentViewModel.repoName
         let path = repoItem.path ?? ""
         
         if repoItem.type != "file" {
             
             Task {
-                if let content = await getRepoContent(username: username, repoName: repoName, path: path) {
+                if let content = await repoContentViewModel.getRepoContent(username: username, repoName: repoName, path: path) {
                     let vc = RepoContentListViewController()
                     vc.configureRepos(with: content, username: username, repoName: repoName)
+                    vc.title = path
                     navigationController?.pushViewController(vc, animated: true)
                 }
                 
@@ -110,9 +87,10 @@ extension RepoContentListViewController: UITableViewDelegate {
         } else {
             
             Task {
-                if let content = await getRepoContentSingle(username: username, repoName: repoName, path: path) {
+                if let content = await repoContentViewModel.getRepoContentSingle(username: username, repoName: repoName, path: path) {
                     let vc = FileContentViewController()
                     vc.configure(with: content)
+                    vc.title = path
                     navigationController?.pushViewController(vc, animated: true)
                 }
             }

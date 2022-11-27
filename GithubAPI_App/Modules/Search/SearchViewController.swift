@@ -10,6 +10,7 @@ import UIKit
 final class SearchViewController: UIViewController {
     
     private let searchView = SearchView()
+    private let searchViewModel = SearchViewModel()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,26 +40,19 @@ final class SearchViewController: UIViewController {
 
 extension SearchViewController {
     @objc func didTapSearchButton() {
+        searchView.searchButton.loadIndicator(shouldShow: true)
         Task {
-            searchView.searchButton.loadIndicator(shouldShow: true)
-            await getUser(username: searchView.searchTextfield.text ?? "")
+            if let user = await searchViewModel.getUser(username: searchView.searchTextfield.text ?? "") {
+                let vc = UserProfileViewController()
+                vc.configure(with: user, isAuthUser: false)
+                navigationController?.pushViewController(vc, animated: true)
+            } else {
+                doNotFindUserAlert()
+            }
             searchView.searchButton.loadIndicator(shouldShow: false)
         }
     }
     
-    private func getUser(username: String) async {
-        do {
-            let result = try await NetworkLayer().getGithubContentProfileRelated(returnType: User.self, endpoint: .getUserProfile(username: username))
-            
-            let vc = UserProfileViewController()
-            vc.configure(with: result, isAuthUser: false)
-            navigationController?.pushViewController(vc, animated: true)
-        } catch {
-            doNotFindUserAlert()
-            print(error)
-        }
-       
-    }
 }
 
 extension SearchViewController: UITextFieldDelegate {

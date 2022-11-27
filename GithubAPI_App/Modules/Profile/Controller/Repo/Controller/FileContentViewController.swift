@@ -36,6 +36,7 @@ final class FileContentViewController: UIViewController {
     
     func configure(with content: RepoContent) {
         label.text = content.content?.base64Decode()
+        title = content.path ?? ""
     }
     
 }

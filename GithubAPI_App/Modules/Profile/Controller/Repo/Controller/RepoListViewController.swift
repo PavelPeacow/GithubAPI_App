@@ -9,8 +9,7 @@ import UIKit
 
 final class RepoListViewController: UIViewController {
     
-    private var repos = [Repo]()
-    private var username = ""
+    private let repoListViewModel = RepoListViewModel()
     
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -36,34 +35,21 @@ final class RepoListViewController: UIViewController {
     }
     
     func configureRepos(with repos: [Repo], username: String) {
-        self.repos = repos
-        self.username = username
+        repoListViewModel.repos = repos
+        repoListViewModel.username = username
         title = "\(username) Repositories"
     }
     
 }
 
-extension RepoListViewController {
-    func getRepoContent(username: String, repoName: String, path: String?) async -> [RepoContent]? {
-        do {
-            let content = try await NetworkLayer().getGithubContentWithAuthToken(returnType: [RepoContent].self, endpoint: .getRepoContent(owner: username, repositoryName: repoName, path: path))
-            print(content)
-            return content
-        } catch {
-            print(error)
-            return nil
-        }
-    }
-}
-
 extension RepoListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        repos.count
+        repoListViewModel.repos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = repos[indexPath.row].name ?? ""
+        cell.textLabel?.text = repoListViewModel.repos[indexPath.row].name ?? ""
         cell.imageView?.image = UIImage(systemName: "folder.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
         return cell
     }
@@ -74,13 +60,13 @@ extension RepoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let username = username
-        let repoName = repos[indexPath.row].name ?? ""
+        let username = repoListViewModel.username
+        let repoName = repoListViewModel.repos[indexPath.row].name ?? ""
         
         Task {
-            if let content = await getRepoContent(username: username, repoName: repoName, path: nil) {
+            if let content = await repoListViewModel.getRepoContent(username: username, repoName: repoName, path: nil) {
                 let vc = RepoContentListViewController()
-                vc.configureRepos(with: content, username: username, repoName: repos[indexPath.row].name ?? "")
+                vc.configureRepos(with: content, username: username, repoName: repoListViewModel.repos[indexPath.row].name ?? "")
                 navigationController?.pushViewController(vc, animated: true)
             }
         }

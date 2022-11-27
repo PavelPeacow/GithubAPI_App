@@ -26,6 +26,10 @@
 		B594673D292E507300D7B53F /* FileContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B594673C292E507300D7B53F /* FileContentViewController.swift */; };
 		B5C4DC6F2933492700809815 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C4DC6E2933492700809815 /* Endpoint.swift */; };
 		B5C4DC71293355C100809815 /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C4DC70293355C100809815 /* NetworkConstant.swift */; };
+		B5C4DC732933602800809815 /* RepoContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C4DC722933602800809815 /* RepoContentViewModel.swift */; };
+		B5C4DC752933612E00809815 /* RepoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C4DC742933612E00809815 /* RepoListViewModel.swift */; };
+		B5C4DC772933622C00809815 /* PeopleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C4DC762933622C00809815 /* PeopleListViewModel.swift */; };
+		B5C4DC7C2933655100809815 /* SeachViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C4DC7B2933655100809815 /* SeachViewModel.swift */; };
 		B5FC044F2928ED240048A949 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC044E2928ED240048A949 /* MainTabBarViewController.swift */; };
 		B5FC04512928FA860048A949 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC04502928FA860048A949 /* SearchViewController.swift */; };
 		B5FC04532929044B0048A949 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC04522929044B0048A949 /* UserProfileViewController.swift */; };
@@ -61,6 +65,10 @@
 		B594673C292E507300D7B53F /* FileContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileContentViewController.swift; sourceTree = "<group>"; };
 		B5C4DC6E2933492700809815 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		B5C4DC70293355C100809815 /* NetworkConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstant.swift; sourceTree = "<group>"; };
+		B5C4DC722933602800809815 /* RepoContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoContentViewModel.swift; sourceTree = "<group>"; };
+		B5C4DC742933612E00809815 /* RepoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListViewModel.swift; sourceTree = "<group>"; };
+		B5C4DC762933622C00809815 /* PeopleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewModel.swift; sourceTree = "<group>"; };
+		B5C4DC7B2933655100809815 /* SeachViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachViewModel.swift; sourceTree = "<group>"; };
 		B5FC044E2928ED240048A949 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		B5FC04502928FA860048A949 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B5FC04522929044B0048A949 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -111,7 +119,6 @@
 				B520B54D2923D3AD0075E3AF /* Modules */,
 				B58822A8292657FD008B67B3 /* Model */,
 				B520B54F2923D3C10075E3AF /* Resourses */,
-				B520B5472923D2EF0075E3AF /* Info.plist */,
 			);
 			path = GithubAPI_App;
 			sourceTree = "<group>";
@@ -133,6 +140,7 @@
 				B520B5392923D2EE0075E3AF /* AppDelegate.swift */,
 				B520B53B2923D2EE0075E3AF /* SceneDelegate.swift */,
 				B520B5442923D2EF0075E3AF /* LaunchScreen.storyboard */,
+				B520B5472923D2EF0075E3AF /* Info.plist */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -203,11 +211,29 @@
 		B594673E292E591C00D7B53F /* Repo */ = {
 			isa = PBXGroup;
 			children = (
+				B5C4DC7A2933652300809815 /* Controller */,
+				B5C4DC78293364FF00809815 /* ViewModel */,
+			);
+			path = Repo;
+			sourceTree = "<group>";
+		};
+		B5C4DC78293364FF00809815 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B5C4DC742933612E00809815 /* RepoListViewModel.swift */,
+				B5C4DC722933602800809815 /* RepoContentViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B5C4DC7A2933652300809815 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				B520B53D2923D2EE0075E3AF /* RepoListViewController.swift */,
 				B5946738292E422B00D7B53F /* RepoContentListViewController.swift */,
 				B594673C292E507300D7B53F /* FileContentViewController.swift */,
 			);
-			path = Repo;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		B5FC045829291E020048A949 /* Extension */ = {
@@ -245,8 +271,9 @@
 		B5FC0460292A72FD0048A949 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				B5FC04502928FA860048A949 /* SearchViewController.swift */,
 				B5FC0463292A7DC50048A949 /* SearchView.swift */,
+				B5FC04502928FA860048A949 /* SearchViewController.swift */,
+				B5C4DC7B2933655100809815 /* SeachViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -255,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				B5946722292A97C700D7B53F /* UserProfileViewModel.swift */,
+				B5C4DC762933622C00809815 /* PeopleListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -349,6 +377,7 @@
 				B5FC04532929044B0048A949 /* UserProfileViewController.swift in Sources */,
 				B5FC044F2928ED240048A949 /* MainTabBarViewController.swift in Sources */,
 				B5946725292A9AFD00D7B53F /* UserProfileView+Alert.swift in Sources */,
+				B5C4DC752933612E00809815 /* RepoListViewModel.swift in Sources */,
 				B594673D292E507300D7B53F /* FileContentViewController.swift in Sources */,
 				B58822B029268767008B67B3 /* Token.swift in Sources */,
 				B5FC0462292A7CE50048A949 /* LoginView.swift in Sources */,
@@ -365,10 +394,13 @@
 				B5FC0464292A7DC50048A949 /* SearchView.swift in Sources */,
 				B5946723292A97C700D7B53F /* UserProfileViewModel.swift in Sources */,
 				B5FC0468292A7EE80048A949 /* UserProfileView.swift in Sources */,
+				B5C4DC732933602800809815 /* RepoContentViewModel.swift in Sources */,
 				B520B55329263A820075E3AF /* Repo.swift in Sources */,
 				B520B53A2923D2EE0075E3AF /* AppDelegate.swift in Sources */,
 				B520B53C2923D2EE0075E3AF /* SceneDelegate.swift in Sources */,
+				B5C4DC772933622C00809815 /* PeopleListViewModel.swift in Sources */,
 				B5FC0455292907110048A949 /* User.swift in Sources */,
+				B5C4DC7C2933655100809815 /* SeachViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,7 +541,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V352R4M2J4;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GithubAPI_App/Info.plist;
+				INFOPLIST_FILE = GithubAPI_App/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -536,7 +568,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V352R4M2J4;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GithubAPI_App/Info.plist;
+				INFOPLIST_FILE = GithubAPI_App/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

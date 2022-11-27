@@ -14,7 +14,7 @@ enum PeopleType {
 
 final class PeopleListViewController: UIViewController {
     
-    private var users = [User]()
+    private let peopleListViewModel = PeopleListViewModel()
     
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -45,7 +45,7 @@ final class PeopleListViewController: UIViewController {
     }
     
     func configure(with users: [User], username: String, type: PeopleType) {
-        self.users = users
+        peopleListViewModel.users = users
         switch type {
         case .followers:
             title = "\(username) followers"
@@ -56,28 +56,16 @@ final class PeopleListViewController: UIViewController {
     
 }
 
-extension PeopleListViewController {
-    func getUser(username: String) async -> User? {
-        do {
-            let user = try await NetworkLayer().getGithubContentProfileRelated(returnType: User.self, endpoint: .getUserProfile(username: username))
-            return user
-        } catch {
-            print(error)
-            return nil
-        }
-    }
-}
-
 extension PeopleListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        users.count
+        peopleListViewModel.users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PeopleTableViewCell.identifier, for: indexPath) as? PeopleTableViewCell else {
             return UITableViewCell()
         }
-        cell.configure(with: users[indexPath.row])
+        cell.configure(with: peopleListViewModel.users[indexPath.row])
         return cell
     }
     
@@ -88,8 +76,8 @@ extension PeopleListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         Task {
-            let username = users[indexPath.row].login
-            if let user = await getUser(username: username) {
+            let username = peopleListViewModel.users[indexPath.row].login
+            if let user = await peopleListViewModel.getUser(username: username) {
                 let vc = UserProfileViewController()
                 vc.configure(with: user, isAuthUser: false)
                 navigationController?.pushViewController(vc, animated: true)

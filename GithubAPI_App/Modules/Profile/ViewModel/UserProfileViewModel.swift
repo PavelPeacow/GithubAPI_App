@@ -28,7 +28,7 @@ final class UserProfileViewModel {
     
     private func getProfileRepos() async -> [Repo]? {
         do {
-            let repos = try await NetworkLayer().getGithubContentWithAuthToken(returnType: [Repo].self, endpoint: .getAuthUserRepos)
+            let repos = try await NetworkLayer().getGithubContent(returnType: [Repo].self, endpoint: .getAuthUserRepos)
             print(repos)
             return repos
         } catch {
@@ -39,7 +39,7 @@ final class UserProfileViewModel {
     
     private func getUserRepos() async -> [Repo]? {
         do {
-            let repos = try await NetworkLayer().getGithubContentProfileRelated(returnType: [Repo].self, endpoint: .getUserRepos(username: user.login))
+            let repos = try await NetworkLayer().getGithubContent(returnType: [Repo].self, endpoint: .getUserRepos(username: user.login))
             print(repos)
             return repos
         } catch {
@@ -50,7 +50,7 @@ final class UserProfileViewModel {
     
     func getUserFollowers() async -> [User]? {
         do {
-            let users = try await NetworkLayer().getGithubContentProfileRelated(returnType: [User].self, endpoint: .getUserFollowers(username: user.login))
+            let users = try await NetworkLayer().getGithubContent(returnType: [User].self, endpoint: .getUserFollowers(username: user.login))
             return users
         } catch {
             print(error)
@@ -60,7 +60,7 @@ final class UserProfileViewModel {
     
     func getUserFollowing() async -> [User]? {
         do {
-            let users = try await NetworkLayer().getGithubContentProfileRelated(returnType: [User].self, endpoint: .getUserFollowing(username: user.login))
+            let users = try await NetworkLayer().getGithubContent(returnType: [User].self, endpoint: .getUserFollowing(username: user.login))
             return users
         } catch {
             print(error)
