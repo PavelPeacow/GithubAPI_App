@@ -61,24 +61,28 @@ extension UserProfileViewController {
     
     @objc func didTapFollowersLabel() {
         Task {
-            if let users = await userProfileViewModel.getUserFollowers() {
+            if let users = await userProfileViewModel.getUserFollowers(), !users.isEmpty {
                 let vc = PeopleListViewController()
                 vc.configure(with: users, username: userProfileViewModel.user.login, type: .followers)
                 navigationController?.pushViewController(vc, animated: true)
             } else {
-                doNotHavePeopleAlert(type: .followers)
+                DispatchQueue.main.async { [weak self] in
+                    self?.doNotHavePeopleAlert(type: .following)
+                }
             }
         }
     }
     
     @objc func didTapFollowingLabel() {
         Task {
-            if let users = await userProfileViewModel.getUserFollowing() {
+            if let users = await userProfileViewModel.getUserFollowing(), !users.isEmpty {
                 let vc = PeopleListViewController()
                 vc.configure(with: users, username: userProfileViewModel.user.login, type: .following)
                 navigationController?.pushViewController(vc, animated: true)
             } else {
-                doNotHavePeopleAlert(type: .following)
+                DispatchQueue.main.async { [weak self] in
+                    self?.doNotHavePeopleAlert(type: .following)
+                }
             }
         }
     }
@@ -87,13 +91,16 @@ extension UserProfileViewController {
         userProfileView.showReposButton.loadIndicator(shouldShow: true)
         userProfileViewModel.loadRepos(isAuthUser: isAuthUser) { [weak self] repos in
             DispatchQueue.main.async {
-                if !repos.isEmpty {
-                    let vc = RepoListViewController()
-                    vc.configureRepos(with: repos, username: self?.userProfileViewModel.user.login ?? "")
-                    self?.navigationController?.pushViewController(vc, animated: true)
-                } else {
+                guard !repos.isEmpty else {
                     self?.doNotHaveReposAlert()
+                    self?.userProfileView.showReposButton.loadIndicator(shouldShow: false)
+                    return
                 }
+                
+                let vc = RepoListViewController()
+                vc.configureRepos(with: repos, username: self?.userProfileViewModel.user.login ?? "")
+                self?.navigationController?.pushViewController(vc, animated: true)
+                
                 self?.userProfileView.showReposButton.loadIndicator(shouldShow: false)
             }
         }

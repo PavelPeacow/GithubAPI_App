@@ -81,8 +81,6 @@ extension PeopleListViewController: UITableViewDelegate {
                 let vc = UserProfileViewController()
                 vc.configure(with: user, isAuthUser: false)
                 navigationController?.pushViewController(vc, animated: true)
-            } else {
-                print("user not found")
             }
         }
         

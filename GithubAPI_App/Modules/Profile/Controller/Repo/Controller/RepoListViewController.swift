@@ -68,6 +68,8 @@ extension RepoListViewController: UITableViewDelegate {
                 let vc = RepoContentListViewController()
                 vc.configureRepos(with: content, username: username, repoName: repoListViewModel.repos[indexPath.row].name ?? "")
                 navigationController?.pushViewController(vc, animated: true)
+            } else {
+                emptyRepoAlert()
             }
         }
         
