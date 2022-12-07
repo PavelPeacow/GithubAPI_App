@@ -9,9 +9,6 @@ import UIKit
 
 final class UserProfileViewController: UIViewController {
     
-    private var isAuthUser = false
-    private var user: User!
-    
     private let userProfileView = UserProfileView()
     private let userProfileViewModel = UserProfileViewModel()
     
@@ -26,7 +23,7 @@ final class UserProfileViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if isAuthUser { userProfileView.logoutButton.isHidden = false }
+        if userProfileViewModel.isAuthUser { userProfileView.logoutButton.isHidden = false }
         else { userProfileView.logoutButton.isHidden = true }
     }
     
@@ -45,7 +42,7 @@ final class UserProfileViewController: UIViewController {
     func configure(with model: User, isAuthUser: Bool) {
         userProfileViewModel.user = model
         
-        self.isAuthUser = isAuthUser
+        userProfileViewModel.isAuthUser = isAuthUser
         userProfileView.userName.text = model.login
         userProfileView.userBio.text = model.bio
         userProfileView.userRealName.text = model.name
@@ -89,19 +86,17 @@ extension UserProfileViewController {
     
     @objc func didTapReposButton() {
         userProfileView.showReposButton.loadIndicator(shouldShow: true)
-        userProfileViewModel.loadRepos(isAuthUser: isAuthUser) { [weak self] repos in
+        userProfileViewModel.loadRepos(isAuthUser: userProfileViewModel.isAuthUser) { [weak self] repos in
             DispatchQueue.main.async {
+                self?.userProfileView.showReposButton.loadIndicator(shouldShow: false)
                 guard !repos.isEmpty else {
                     self?.doNotHaveReposAlert()
-                    self?.userProfileView.showReposButton.loadIndicator(shouldShow: false)
                     return
                 }
                 
                 let vc = RepoListViewController()
                 vc.configureRepos(with: repos, username: self?.userProfileViewModel.user.login ?? "")
                 self?.navigationController?.pushViewController(vc, animated: true)
-                
-                self?.userProfileView.showReposButton.loadIndicator(shouldShow: false)
             }
         }
     }

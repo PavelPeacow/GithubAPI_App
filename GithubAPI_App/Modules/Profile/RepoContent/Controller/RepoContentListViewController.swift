@@ -54,7 +54,8 @@ extension RepoContentListViewController: UITableViewDataSource {
         let repoIcon: UIImage?
         cell.textLabel?.text = repoItem.name
         
-        if repoItem.type == "file" { repoIcon = UIImage(systemName: "doc.fill") } else { repoIcon = UIImage(systemName: "folder.fill") }
+        if repoItem.type == "file" { repoIcon = UIImage(systemName: "doc.fill") }
+        else { repoIcon = UIImage(systemName: "folder.fill") }
         
         cell.imageView?.image = repoIcon?.withTintColor(.white, renderingMode: .alwaysOriginal)
         return cell

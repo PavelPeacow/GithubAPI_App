@@ -155,6 +155,75 @@
 			path = Resourses;
 			sourceTree = "<group>";
 		};
+		B52430842940EF8C000DA05F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC0463292A7DC50048A949 /* SearchView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B52430852940EF92000DA05F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC04502928FA860048A949 /* SearchViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B52430862940EF97000DA05F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B5C4DC7B2933655100809815 /* SeachViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B52430872940EF9D000DA05F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC0461292A7CE50048A949 /* LoginView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B52430882940EFA5000DA05F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B520B55429264E3D0075E3AF /* LoginViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B52430892940EFAA000DA05F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC045C292A72DB0048A949 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B524308A2940EFCC000DA05F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B594672D292B58C500D7B53F /* Cell */,
+				B594672E292B5D5200D7B53F /* View */,
+				B594672F292B5D6300D7B53F /* Controller */,
+				B5FC0469292A7EEE0048A949 /* ViewModel */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		B524308B2940F18F000DA05F /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC046A292A81E60048A949 /* SearchView+Alert.swift */,
+				B5946724292A9AFD00D7B53F /* UserProfileView+Alert.swift */,
+				B5C4DC7D29336C9200809815 /* RepoList+Alert.swift */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
 		B58822A8292657FD008B67B3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,7 +266,6 @@
 			children = (
 				B5FC04522929044B0048A949 /* UserProfileViewController.swift */,
 				B5946726292B49C300D7B53F /* PeopleListViewController.swift */,
-				B594673E292E591C00D7B53F /* Repo */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -210,13 +278,13 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		B594673E292E591C00D7B53F /* Repo */ = {
+		B594673E292E591C00D7B53F /* RepoContent */ = {
 			isa = PBXGroup;
 			children = (
 				B5C4DC7A2933652300809815 /* Controller */,
 				B5C4DC78293364FF00809815 /* ViewModel */,
 			);
-			path = Repo;
+			path = RepoContent;
 			sourceTree = "<group>";
 		};
 		B5C4DC78293364FF00809815 /* ViewModel */ = {
@@ -242,10 +310,8 @@
 			isa = PBXGroup;
 			children = (
 				B5FC045629290BFE0048A949 /* UIImage+URLDowload.swift */,
-				B5FC046A292A81E60048A949 /* SearchView+Alert.swift */,
-				B5946724292A9AFD00D7B53F /* UserProfileView+Alert.swift */,
-				B5C4DC7D29336C9200809815 /* RepoList+Alert.swift */,
 				B594673A292E4AFC00D7B53F /* String+DecodeContent.swift */,
+				B524308B2940F18F000DA05F /* Alerts */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -253,9 +319,9 @@
 		B5FC045E292A72E90048A949 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				B5FC0461292A7CE50048A949 /* LoginView.swift */,
-				B520B55429264E3D0075E3AF /* LoginViewController.swift */,
-				B5FC045C292A72DB0048A949 /* LoginViewModel.swift */,
+				B52430872940EF9D000DA05F /* View */,
+				B52430882940EFA5000DA05F /* Controller */,
+				B52430892940EFAA000DA05F /* ViewModel */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -263,10 +329,8 @@
 		B5FC045F292A72F80048A949 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				B594672D292B58C500D7B53F /* Cell */,
-				B594672F292B5D6300D7B53F /* Controller */,
-				B594672E292B5D5200D7B53F /* View */,
-				B5FC0469292A7EEE0048A949 /* ViewModel */,
+				B524308A2940EFCC000DA05F /* Main */,
+				B594673E292E591C00D7B53F /* RepoContent */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -274,9 +338,9 @@
 		B5FC0460292A72FD0048A949 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				B5FC0463292A7DC50048A949 /* SearchView.swift */,
-				B5FC04502928FA860048A949 /* SearchViewController.swift */,
-				B5C4DC7B2933655100809815 /* SeachViewModel.swift */,
+				B52430842940EF8C000DA05F /* View */,
+				B52430852940EF92000DA05F /* Controller */,
+				B52430862940EF97000DA05F /* ViewModel */,
 			);
 			path = Search;
 			sourceTree = "<group>";

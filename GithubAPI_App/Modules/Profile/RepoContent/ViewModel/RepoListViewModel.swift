@@ -13,14 +13,7 @@ final class RepoListViewModel {
     var username = ""
     
     func getRepoContent(username: String, repoName: String, path: String?) async -> [RepoContent]? {
-        do {
-            let content = try await NetworkLayer().getGithubContent(returnType: [RepoContent].self, endpoint: .getRepoContent(owner: username, repositoryName: repoName, path: path))
-            print(content)
-            return content
-        } catch {
-            print(error)
-            return nil
-        }
+        try? await NetworkLayer().getGithubContent(returnType: [RepoContent].self, endpoint: .getRepoContent(owner: username, repositoryName: repoName, path: path))
     }
     
 }

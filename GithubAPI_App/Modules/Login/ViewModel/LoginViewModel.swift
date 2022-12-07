@@ -34,21 +34,12 @@ final class LoginViewModel {
     }
     
     private func getUserToken(code: String) async {
-        do {
-            try await NetworkLayer().getUserToken(endpoint: .getUserToken(code: code))
-        } catch {
-            print(error)
-        }
+        try? await NetworkLayer().getUserToken(endpoint: .getUserToken(code: code))
     }
     
     private func getAuthUser() async -> User? {
-        do {
-            let user = try await NetworkLayer().getGithubContent(returnType: User.self, endpoint: .getAuthUser)
-            return user
-        } catch {
-            print(error)
-            return nil
-        }
+        try? await NetworkLayer().getGithubContent(returnType: User.self, endpoint: .getAuthUser)
+        
     }
     
 }
