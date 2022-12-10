@@ -11,8 +11,8 @@ final class PeopleTableViewCell: UITableViewCell {
     
     static let identifier = "PeopleTableViewCell"
     
-    private lazy var personAvatar: UIImageView = {
-        let image = UIImageView()
+    private lazy var personAvatar: CustomUIImageView = {
+        let image = CustomUIImageView()
         image.layer.cornerRadius = 5
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -37,8 +37,9 @@ final class PeopleTableViewCell: UITableViewCell {
     }
     
     func configure(with user: User) {
+        guard let url = URL(string: user.avatar_url) else { return }
         personName.text = user.login
-        personAvatar.downloadImage(with: user.avatar_url)
+        personAvatar.loadImage(for: url)
     }
     
 }

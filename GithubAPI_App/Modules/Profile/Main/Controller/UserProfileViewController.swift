@@ -40,13 +40,14 @@ final class UserProfileViewController: UIViewController {
     }
     
     func configure(with model: User, isAuthUser: Bool) {
+        guard let url = URL(string: model.avatar_url) else { return }
         userProfileViewModel.user = model
         
         userProfileViewModel.isAuthUser = isAuthUser
         userProfileView.userName.text = model.login
         userProfileView.userBio.text = model.bio
         userProfileView.userRealName.text = model.name
-        userProfileView.userAvatar.downloadImage(with: model.avatar_url)
+        userProfileView.userAvatar.loadImage(for: url)
         
         userProfileView.followingLabel.text = "following: \(model.following ?? 0)"
         userProfileView.followersLabel.text = "followers: \(model.followers ?? 0)"

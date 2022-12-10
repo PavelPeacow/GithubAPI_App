@@ -9,8 +9,8 @@ import UIKit
 
 final class UserProfileView: UIView {
     
-    lazy var userAvatar: UIImageView = {
-        let image = UIImageView()
+    lazy var userAvatar: CustomUIImageView = {
+        let image = CustomUIImageView()
         image.clipsToBounds = true
         image.layer.cornerRadius = 25
         image.translatesAutoresizingMaskIntoConstraints = false

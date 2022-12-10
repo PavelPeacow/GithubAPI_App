@@ -18,7 +18,7 @@ final class PeopleListViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let table = UITableView()
-        table.backgroundColor = .purple
+        table.backgroundColor = .systemBackground
         table.rowHeight = 80
         table.layer.cornerRadius = 10
         table.separatorColor = .white
