@@ -27,6 +27,8 @@ enum Endpoint: EndpointProtocol {
     
     case getRepoContent(owner: String, repositoryName: String, path: String?)
     
+    case searchUser(username: String, page: String)
+    
     case getUserProfile(username: String)
     case getUserRepos(username: String)
     case getUserFollowing(username: String)
@@ -61,6 +63,15 @@ enum Endpoint: EndpointProtocol {
             
             return urlComponents(path: "/repos/\(owner)/\(repositoryName)/contents/\(path ?? "")")
             
+        case .searchUser(username: let username, page: let page):
+            
+            let queryItems = [
+                URLQueryItem(name: "q", value: username),
+                URLQueryItem(name: "page", value: page),
+                URLQueryItem(name: "per_page", value: "100")
+            ]
+            return urlComponents(path: "/search/users", quertyItems: queryItems)
+            
         case .getUserProfile(let username):
             
             return urlComponents(path: "/users/\(username)")
@@ -88,7 +99,7 @@ enum Endpoint: EndpointProtocol {
         switch self {
         case .getUserToken:
             return .post
-        case .getAuthUser, .getAuthUserRepos, .getRepoContent,
+        case .getAuthUser, .getAuthUserRepos, .getRepoContent, .searchUser,
                 .getUserProfile, .getUserRepos, .getUserFollowing,
                 .getUserFollowers:
             return .get
@@ -103,7 +114,7 @@ enum Endpoint: EndpointProtocol {
             request.httpMethod = httpMethod.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.setValue("application/json", forHTTPHeaderField: "Accept")
-        case .getAuthUser, .getRepoContent, .getAuthUserRepos:
+        case .getAuthUser, .getRepoContent, .getAuthUserRepos, .searchUser:
             request.httpMethod = httpMethod.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.setValue("Bearer \(NetworkLayer().accessToken ?? "")", forHTTPHeaderField: "Authorization")

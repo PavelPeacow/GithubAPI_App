@@ -9,28 +9,18 @@ import UIKit
 
 final class UIButtonWithActivityIndicator: UIButton {
     
-    var activityIndicator: UIActivityIndicatorView!
+    private let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .medium)
     
     func loadIndicator(shouldShow: Bool) {
         if shouldShow {
-            if (activityIndicator == nil) {
-                activityIndicator = createActivityIndicator()
-            }
             isEnabled = false
             alpha = 0.7
             showSpinning()
         } else {
-            activityIndicator.stopAnimating()
             isEnabled = true
             alpha = 1.0
+            activityIndicator.stopAnimating()
         }
-    }
-    
-    private func createActivityIndicator() -> UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = .gray
-        return activityIndicator
     }
     
     private func showSpinning() {

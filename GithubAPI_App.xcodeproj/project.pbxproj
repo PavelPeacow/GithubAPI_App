@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B50003F12944991E00741BFF /* UserSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50003F02944991E00741BFF /* UserSearch.swift */; };
+		B50003F329449B1200741BFF /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50003F229449B1200741BFF /* SearchTableViewCell.swift */; };
 		B520B53A2923D2EE0075E3AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B5392923D2EE0075E3AF /* AppDelegate.swift */; };
 		B520B53C2923D2EE0075E3AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B53B2923D2EE0075E3AF /* SceneDelegate.swift */; };
 		B520B53E2923D2EE0075E3AF /* RepoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B53D2923D2EE0075E3AF /* RepoListViewController.swift */; };
@@ -45,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B50003F02944991E00741BFF /* UserSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearch.swift; sourceTree = "<group>"; };
+		B50003F229449B1200741BFF /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		B520B5362923D2EE0075E3AF /* GithubAPI_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubAPI_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B520B5392923D2EE0075E3AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B520B53B2923D2EE0075E3AF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B50003F429449B8F00741BFF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B50003F229449B1200741BFF /* SearchTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		B520B52D2923D2EE0075E3AF = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +243,7 @@
 				B58822AF29268767008B67B3 /* Token.swift */,
 				B5FC0454292907110048A949 /* User.swift */,
 				B5946736292E3FEC00D7B53F /* RepoContent.swift */,
+				B50003F02944991E00741BFF /* UserSearch.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -337,6 +350,7 @@
 		B5FC0460292A72FD0048A949 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				B50003F429449B8F00741BFF /* Cell */,
 				B52430842940EF8C000DA05F /* View */,
 				B52430852940EF92000DA05F /* Controller */,
 				B52430862940EF97000DA05F /* ViewModel */,
@@ -444,6 +458,7 @@
 				B5FC04532929044B0048A949 /* UserProfileViewController.swift in Sources */,
 				B5FC044F2928ED240048A949 /* MainTabBarViewController.swift in Sources */,
 				B5946725292A9AFD00D7B53F /* UserProfileView+Alert.swift in Sources */,
+				B50003F12944991E00741BFF /* UserSearch.swift in Sources */,
 				B5C4DC752933612E00809815 /* RepoListViewModel.swift in Sources */,
 				B594673D292E507300D7B53F /* FileContentViewController.swift in Sources */,
 				B58822B029268767008B67B3 /* Token.swift in Sources */,
@@ -469,6 +484,7 @@
 				B5C4DC772933622C00809815 /* PeopleListViewModel.swift in Sources */,
 				B5FC0455292907110048A949 /* User.swift in Sources */,
 				B5C4DC7C2933655100809815 /* SeachViewModel.swift in Sources */,
+				B50003F329449B1200741BFF /* SearchTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

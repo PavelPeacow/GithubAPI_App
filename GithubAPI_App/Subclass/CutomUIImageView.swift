@@ -11,7 +11,7 @@ fileprivate let imageCache = NSCache<AnyObject, AnyObject>()
 
 class CustomUIImageView: UIImageView {
 
-    var task: URLSessionDataTask!
+    var task: URLSessionDataTask?
     let loadingView = UIActivityIndicatorView(style: .large)
     
     func loadImage(for url: URL) {
@@ -32,7 +32,7 @@ class CustomUIImageView: UIImageView {
         let task = URLSession.shared.dataTask(with: url) { data, resp, error in
             
             guard let data = data, let image = UIImage(data: data) else {
-                print("data nil loh")
+                print("data is nil")
                 return
             }
             

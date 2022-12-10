@@ -43,6 +43,8 @@ final class UserProfileViewController: UIViewController {
         guard let url = URL(string: model.avatar_url) else { return }
         userProfileViewModel.user = model
         
+        title = "\(userProfileViewModel.user.login) profile"
+        
         userProfileViewModel.isAuthUser = isAuthUser
         userProfileView.userName.text = model.login
         userProfileView.userBio.text = model.bio

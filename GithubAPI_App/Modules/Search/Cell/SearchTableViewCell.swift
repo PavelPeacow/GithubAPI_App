@@ -1,30 +1,30 @@
 //
-//  PeopleTableViewController.swift
+//  SearchTableViewCell.swift
 //  GithubAPI_App
 //
-//  Created by Павел Кай on 21.11.2022.
+//  Created by Павел Кай on 10.12.2022.
 //
 
 import UIKit
 
-final class PeopleTableViewCell: UITableViewCell {
+final class SearchTableViewCell: UITableViewCell {
     
-    static let identifier = "PeopleTableViewCell"
+    static let identifier = "SearchTableViewCell"
     
-    private lazy var personAvatar: CustomUIImageView = {
+    lazy var personAvatar: CustomUIImageView = {
         let image = CustomUIImageView()
-        image.layer.cornerRadius = 5
+        image.layer.cornerRadius = 15
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
-    private lazy var personName: UILabel = {
+    lazy var personName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -43,9 +43,16 @@ final class PeopleTableViewCell: UITableViewCell {
         personAvatar.loadImage(for: url)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        personAvatar.image = nil
+        personAvatar.task?.cancel()
+    }
+    
 }
 
-extension PeopleTableViewCell {
+extension SearchTableViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             personAvatar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
