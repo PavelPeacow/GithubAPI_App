@@ -76,12 +76,14 @@ extension PeopleListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         Task {
+            tableView.cellForRow(at: indexPath)?.showLoadingIndicator()
             let username = peopleListViewModel.users[indexPath.row].login
             if let user = await peopleListViewModel.getUser(username: username) {
                 let vc = UserProfileViewController()
                 vc.configure(with: user, isAuthUser: false)
                 navigationController?.pushViewController(vc, animated: true)
             }
+            tableView.cellForRow(at: indexPath)?.hideLoadingIndicator()
         }
         
     }

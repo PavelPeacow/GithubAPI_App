@@ -42,14 +42,7 @@ final class SearchTableViewCell: UITableViewCell {
         personName.text = user.login
         personAvatar.loadImage(for: url)
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
         
-        personAvatar.image = nil
-        personAvatar.task?.cancel()
-    }
-    
 }
 
 extension SearchTableViewCell {
@@ -57,8 +50,8 @@ extension SearchTableViewCell {
         NSLayoutConstraint.activate([
             personAvatar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             personAvatar.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            personAvatar.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8),
-            personAvatar.widthAnchor.constraint(equalToConstant: 60),
+            personAvatar.heightAnchor.constraint(equalToConstant: 110),
+            personAvatar.widthAnchor.constraint(equalToConstant: 100),
             
             personName.leadingAnchor.constraint(equalTo: personAvatar.trailingAnchor, constant: 10),
             personName.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),

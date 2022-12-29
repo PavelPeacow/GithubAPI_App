@@ -10,8 +10,8 @@ import AuthenticationServices
 final class LoginViewModel {
     
     func loadGitHubAuthPromt(in view: UIViewController, onCompleteion: @escaping (User?) -> Void) {
-        guard let url = URL(string: "https://github.com/login/oauth/authorize?client_id=\(NetworkConstant.clientID)&scope=read:user&scope=repo&state=TEST_STATE") else { return }
-        let callBackScheme = "pavel.github.test.app"
+        guard let url = URL(string: NetworkConstant.oauth) else { return }
+        let callBackScheme = NetworkConstant.callBackScheme
         let session = ASWebAuthenticationSession(url: url, callbackURLScheme: callBackScheme) { callBackURL, error in
             guard let callBackURL = callBackURL, error == nil else { onCompleteion(nil); return}
             
@@ -34,7 +34,7 @@ final class LoginViewModel {
     }
     
     private func getUserToken(code: String) async {
-        try? await NetworkLayer().getUserToken(endpoint: .getUserToken(code: code))
+        _ = try? await NetworkLayer().getGithubContent(returnType: Token.self, endpoint: .getUserToken(code: code))
     }
     
     private func getAuthUser() async -> User? {

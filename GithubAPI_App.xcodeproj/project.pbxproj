@@ -17,7 +17,7 @@
 		B520B551292639150075E3AF /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B550292639150075E3AF /* NetworkLayer.swift */; };
 		B520B55329263A820075E3AF /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B55229263A820075E3AF /* Repo.swift */; };
 		B520B55529264E3D0075E3AF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520B55429264E3D0075E3AF /* LoginViewController.swift */; };
-		B55A7AD829448DBE00274988 /* CutomUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55A7AD729448DBE00274988 /* CutomUIImageView.swift */; };
+		B55A7AD829448DBE00274988 /* CustomUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55A7AD729448DBE00274988 /* CustomUIImageView.swift */; };
 		B58822B029268767008B67B3 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58822AF29268767008B67B3 /* Token.swift */; };
 		B5946723292A97C700D7B53F /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5946722292A97C700D7B53F /* UserProfileViewModel.swift */; };
 		B5946725292A9AFD00D7B53F /* UserProfileView+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5946724292A9AFD00D7B53F /* UserProfileView+Alert.swift */; };
@@ -27,6 +27,9 @@
 		B5946739292E422B00D7B53F /* RepoContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5946738292E422B00D7B53F /* RepoContentListViewController.swift */; };
 		B594673B292E4AFC00D7B53F /* String+DecodeContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B594673A292E4AFC00D7B53F /* String+DecodeContent.swift */; };
 		B594673D292E507300D7B53F /* FileContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B594673C292E507300D7B53F /* FileContentViewController.swift */; };
+		B5C03BD6295D81CD00B977C6 /* UITableView+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C03BD5295D81CD00B977C6 /* UITableView+Message.swift */; };
+		B5C03BD8295D87FD00B977C6 /* UILabel+LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C03BD7295D87FD00B977C6 /* UILabel+LoadingIndicator.swift */; };
+		B5C03BDA295D8AF000B977C6 /* UITableViewCell+LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C03BD9295D8AF000B977C6 /* UITableViewCell+LoadingIndicator.swift */; };
 		B5C4DC6F2933492700809815 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C4DC6E2933492700809815 /* Endpoint.swift */; };
 		B5C4DC71293355C100809815 /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C4DC70293355C100809815 /* NetworkConstant.swift */; };
 		B5C4DC732933602800809815 /* RepoContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C4DC722933602800809815 /* RepoContentViewModel.swift */; };
@@ -59,7 +62,7 @@
 		B520B550292639150075E3AF /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		B520B55229263A820075E3AF /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 		B520B55429264E3D0075E3AF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		B55A7AD729448DBE00274988 /* CutomUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutomUIImageView.swift; sourceTree = "<group>"; };
+		B55A7AD729448DBE00274988 /* CustomUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIImageView.swift; sourceTree = "<group>"; };
 		B58822AF29268767008B67B3 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		B5946722292A97C700D7B53F /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		B5946724292A9AFD00D7B53F /* UserProfileView+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileView+Alert.swift"; sourceTree = "<group>"; };
@@ -69,6 +72,9 @@
 		B5946738292E422B00D7B53F /* RepoContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoContentListViewController.swift; sourceTree = "<group>"; };
 		B594673A292E4AFC00D7B53F /* String+DecodeContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DecodeContent.swift"; sourceTree = "<group>"; };
 		B594673C292E507300D7B53F /* FileContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileContentViewController.swift; sourceTree = "<group>"; };
+		B5C03BD5295D81CD00B977C6 /* UITableView+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Message.swift"; sourceTree = "<group>"; };
+		B5C03BD7295D87FD00B977C6 /* UILabel+LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+LoadingIndicator.swift"; sourceTree = "<group>"; };
+		B5C03BD9295D8AF000B977C6 /* UITableViewCell+LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+LoadingIndicator.swift"; sourceTree = "<group>"; };
 		B5C4DC6E2933492700809815 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		B5C4DC70293355C100809815 /* NetworkConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstant.swift; sourceTree = "<group>"; };
 		B5C4DC722933602800809815 /* RepoContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoContentViewModel.swift; sourceTree = "<group>"; };
@@ -323,6 +329,9 @@
 			isa = PBXGroup;
 			children = (
 				B594673A292E4AFC00D7B53F /* String+DecodeContent.swift */,
+				B5C03BD5295D81CD00B977C6 /* UITableView+Message.swift */,
+				B5C03BD9295D8AF000B977C6 /* UITableViewCell+LoadingIndicator.swift */,
+				B5C03BD7295D87FD00B977C6 /* UILabel+LoadingIndicator.swift */,
 				B524308B2940F18F000DA05F /* Alerts */,
 			);
 			path = Extension;
@@ -371,7 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				B5FC046C292A8E680048A949 /* UIButtonWithActivityIndicator.swift */,
-				B55A7AD729448DBE00274988 /* CutomUIImageView.swift */,
+				B55A7AD729448DBE00274988 /* CustomUIImageView.swift */,
 			);
 			path = Subclass;
 			sourceTree = "<group>";
@@ -459,6 +468,7 @@
 				B5FC044F2928ED240048A949 /* MainTabBarViewController.swift in Sources */,
 				B5946725292A9AFD00D7B53F /* UserProfileView+Alert.swift in Sources */,
 				B50003F12944991E00741BFF /* UserSearch.swift in Sources */,
+				B5C03BD6295D81CD00B977C6 /* UITableView+Message.swift in Sources */,
 				B5C4DC752933612E00809815 /* RepoListViewModel.swift in Sources */,
 				B594673D292E507300D7B53F /* FileContentViewController.swift in Sources */,
 				B58822B029268767008B67B3 /* Token.swift in Sources */,
@@ -471,7 +481,7 @@
 				B520B53E2923D2EE0075E3AF /* RepoListViewController.swift in Sources */,
 				B5FC045D292A72DB0048A949 /* LoginViewModel.swift in Sources */,
 				B594672C292B58C100D7B53F /* PeopleTableViewCell.swift in Sources */,
-				B55A7AD829448DBE00274988 /* CutomUIImageView.swift in Sources */,
+				B55A7AD829448DBE00274988 /* CustomUIImageView.swift in Sources */,
 				B5946737292E3FEC00D7B53F /* RepoContent.swift in Sources */,
 				B5FC0464292A7DC50048A949 /* SearchView.swift in Sources */,
 				B5946723292A97C700D7B53F /* UserProfileViewModel.swift in Sources */,
@@ -479,12 +489,14 @@
 				B5C4DC7E29336C9200809815 /* RepoList+Alert.swift in Sources */,
 				B5C4DC732933602800809815 /* RepoContentViewModel.swift in Sources */,
 				B520B55329263A820075E3AF /* Repo.swift in Sources */,
+				B5C03BDA295D8AF000B977C6 /* UITableViewCell+LoadingIndicator.swift in Sources */,
 				B520B53A2923D2EE0075E3AF /* AppDelegate.swift in Sources */,
 				B520B53C2923D2EE0075E3AF /* SceneDelegate.swift in Sources */,
 				B5C4DC772933622C00809815 /* PeopleListViewModel.swift in Sources */,
 				B5FC0455292907110048A949 /* User.swift in Sources */,
 				B5C4DC7C2933655100809815 /* SeachViewModel.swift in Sources */,
 				B50003F329449B1200741BFF /* SearchTableViewCell.swift in Sources */,
+				B5C03BD8295D87FD00B977C6 /* UILabel+LoadingIndicator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

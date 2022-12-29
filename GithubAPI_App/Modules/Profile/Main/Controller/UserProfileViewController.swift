@@ -61,6 +61,7 @@ extension UserProfileViewController {
     
     @objc func didTapFollowersLabel() {
         Task {
+            userProfileView.followersLabel.showLoadingIndicator()
             if let users = await userProfileViewModel.getUserFollowers(), !users.isEmpty {
                 let vc = PeopleListViewController()
                 vc.configure(with: users, username: userProfileViewModel.user.login, type: .followers)
@@ -70,11 +71,13 @@ extension UserProfileViewController {
                     self?.doNotHavePeopleAlert(type: .following)
                 }
             }
+            userProfileView.followersLabel.hideLoadingIndicator()
         }
     }
     
     @objc func didTapFollowingLabel() {
         Task {
+            userProfileView.followingLabel.showLoadingIndicator()
             if let users = await userProfileViewModel.getUserFollowing(), !users.isEmpty {
                 let vc = PeopleListViewController()
                 vc.configure(with: users, username: userProfileViewModel.user.login, type: .following)
@@ -84,6 +87,7 @@ extension UserProfileViewController {
                     self?.doNotHavePeopleAlert(type: .following)
                 }
             }
+            userProfileView.followingLabel.hideLoadingIndicator()
         }
     }
     

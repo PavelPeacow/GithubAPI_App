@@ -14,6 +14,7 @@ final class SearchView: UIView {
         searchTable.backgroundColor = .systemBackground
         searchTable.rowHeight = 120
         searchTable.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
+        searchTable.setEmptyMessageInTableView("Start typing to find user", .headline)
         return searchTable
     }()
         

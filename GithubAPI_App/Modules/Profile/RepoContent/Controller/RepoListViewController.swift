@@ -64,6 +64,7 @@ extension RepoListViewController: UITableViewDelegate {
         let repoName = repoListViewModel.repos[indexPath.row].name ?? ""
         
         Task {
+            tableView.cellForRow(at: indexPath)?.showLoadingIndicator()
             if let content = await repoListViewModel.getRepoContent(username: username, repoName: repoName, path: nil) {
                 let vc = RepoContentListViewController()
                 vc.configureRepos(with: content, username: username, repoName: repoListViewModel.repos[indexPath.row].name ?? "")
@@ -71,6 +72,7 @@ extension RepoListViewController: UITableViewDelegate {
             } else {
                 emptyRepoAlert()
             }
+            tableView.cellForRow(at: indexPath)?.hideLoadingIndicator()
         }
         
     }

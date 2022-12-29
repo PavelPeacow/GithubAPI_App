@@ -10,6 +10,7 @@ import Foundation
 final class SearchViewModel {
     
     var users = [User]()
+    var debounceTimer: Timer?
     
     func searchForUser(username: String, page: String) async -> UserSearch? {
         try? await NetworkLayer().getGithubContent(returnType: UserSearch.self, endpoint: .searchUser(username: username, page: page))

@@ -8,7 +8,6 @@
 import Foundation
 
 protocol NetworkLayerProtocol {
-    func getUserToken(endpoint: Endpoint) async throws
     func getGithubContent<T: Decodable>(returnType: T.Type, endpoint: Endpoint) async throws -> T
 }
 
@@ -41,18 +40,6 @@ final class NetworkLayer: NetworkLayerProtocol {
         self.jsonDecoder = jsonDecoder
     }
     
-    func getUserToken(endpoint: Endpoint) async throws {
-        guard let url = endpoint.url else { throw APIError.badURL }
-        guard let request = endpoint.getRequest(url: url) else { print(APIError.badRequest); throw APIError.badRequest }
-
-        guard let (data, _) = try? await urlSession.data(for: request) else { print(APIError.canNotGetData); throw APIError.canNotGetData }
-        
-        guard let result = try? jsonDecoder.decode(Token.self, from: data) else { print(APIError.canNotDecode); throw APIError.canNotDecode}
-        print(result)
-        
-        accessToken = result.access_token
-    }
-    
     func getGithubContent<T: Decodable>(returnType: T.Type, endpoint: Endpoint) async throws -> T {
         guard let url = endpoint.url else { throw APIError.badURL }
         guard let request = endpoint.getRequest(url: url) else { print(APIError.badRequest); throw APIError.badRequest }
@@ -62,6 +49,10 @@ final class NetworkLayer: NetworkLayerProtocol {
         guard let result = try? jsonDecoder.decode(T.self, from: data) else { print(APIError.canNotDecode); throw APIError.canNotDecode }
         print(result)
                 
+        if let token = result as? Token {
+            accessToken = token.access_token
+        }
+        
         return result
     }
 }

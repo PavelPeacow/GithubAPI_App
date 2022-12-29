@@ -39,7 +39,7 @@ final class SearchViewController: UIViewController {
         searchView.searchTable.dataSource = self
         seacrhController.searchResultsUpdater = self
     }
-        
+    
 }
 
 extension SearchViewController: UITableViewDataSource {
@@ -79,15 +79,28 @@ extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         
-        guard let query = searchBar.text, searchBar.text?.count ?? 0 > 3 else { return }
+        searchViewModel.debounceTimer?.invalidate()
         
-        Task {
-            let users = await searchViewModel.searchForUser(username: query, page: "1")
-            searchViewModel.users = users?.items ?? []
-            searchView.searchTable.reloadData()
-            
+        if !searchViewModel.users.isEmpty {
+            searchView.searchTable.backgroundView = nil
         }
         
+        guard let query = searchBar.text, searchBar.text?.count ?? 0 > 1 else {
+            searchViewModel.users = []
+            searchView.searchTable.setEmptyMessageInTableView("Start typing to find user", .headline)
+            searchView.searchTable.reloadData()
+            return
+        }
+        
+        searchViewModel.debounceTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
+            Task {
+                let users = await self?.searchViewModel.searchForUser(username: query, page: "1")
+                self?.searchViewModel.users = users?.items ?? []
+                self?.searchView.searchTable.reloadData()
+            }
+        }
+        
+       
         
     }
 }

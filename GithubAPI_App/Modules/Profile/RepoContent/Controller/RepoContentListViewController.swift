@@ -73,30 +73,36 @@ extension RepoContentListViewController: UITableViewDelegate {
         let repoName = repoContentViewModel.repoName
         let path = repoItem.path ?? ""
         
+        
         if repoItem.type != "file" {
-            
+           
             Task {
+                tableView.cellForRow(at: indexPath)?.showLoadingIndicator()
                 if let content = await repoContentViewModel.getRepoContent(username: username, repoName: repoName, path: path) {
                     let vc = RepoContentListViewController()
                     vc.configureRepos(with: content, username: username, repoName: repoName)
                     vc.title = path
                     navigationController?.pushViewController(vc, animated: true)
                 }
-                
+                tableView.cellForRow(at: indexPath)?.hideLoadingIndicator()
             }
+           
             
         } else {
             
             Task {
+                tableView.cellForRow(at: indexPath)?.showLoadingIndicator()
                 if let content = await repoContentViewModel.getRepoContentSingle(username: username, repoName: repoName, path: path) {
                     let vc = FileContentViewController()
                     vc.configure(with: content)
                     vc.title = path
                     navigationController?.pushViewController(vc, animated: true)
                 }
+                tableView.cellForRow(at: indexPath)?.hideLoadingIndicator()
             }
            
         }
+       
         
         
     }
